@@ -11,6 +11,7 @@ namespace chatServer
 {
     class chatServer
     {
+        List<int> roomHandle = new List<int>();
         List<chatSocket> clientList = new List<chatSocket>();
         List<String> clientIDList = new List<string>();
         
@@ -38,6 +39,7 @@ namespace chatServer
                 {
                     clientList.Add(client);
                     client.newListener(processMessage);
+                    client.sendMessage("REGNEWUSER:" + "(int)ID");
                 }
                 catch (Exception e)
                 {
@@ -49,31 +51,40 @@ namespace chatServer
         public String processMessage(String msg)
         {
             Console.WriteLine("RECEIVED：" + msg);
+
             char[] del = { ':' };
             String[] words = msg.Split(del);
-            /*
-            if (msg.IndexOf("sendPic:") == 0)
-            {
-                char[] del = { ':' };
-                String[] words = msg.Split(del);
-                Console.WriteLine("picture coming in\n");
+
+            if (words[0].Equals("AVAILABLEID"))
+            {// AVAILABLEID:senderID:ID
+                // search for words[2]
+                // send "AVAILABLEID:USABLE" or "AVAILABLEID:USED" to words[1]
+            }
+
+            else if (words[0].Equals("MESSAGE"))
+            {// MESSAGE:roomID:senderID:color:message
+                // broadCastToRoom();
+                    // String nameAndTime = msg.Substring(0, msg.IndexOf(':') - 1) + " ─ " + DateTime.Now.ToLongTimeString();
+                    // String message = msg.Substring(msg.IndexOf(':') + 2);
+                    // broadCast(nameAndTime + "\n    " + message);
+                // color is using int Color.ToArgb()
+            }
+
+            else if (words[0].Equals("IDPHOTO"))
+            {// IDPHOTO:senderID:fileLength
                 broadCast(msg);
-                
+
                 int index = clientIDList.IndexOf(words[1]);
                 int length = Convert.ToInt32(words[2]);
                 Byte[] buffer = new Byte[length];
 
                 receiveFile(clientList[index], buffer);
-                
-                File.WriteAllBytes("tempFile", buffer);
-                
-                broadCastfile(buffer);
 
-                return "";
-            }*/
-            String nameAndTime = msg.Substring(0, msg.IndexOf(':') - 1) + " ─ " + DateTime.Now.ToLongTimeString();
-            String message = msg.Substring(msg.IndexOf(':') + 2);
-            broadCast(nameAndTime + "\n    " + message);
+                File.WriteAllBytes("tempFile", buffer);
+
+                broadCastfile(buffer);
+            }
+
             return "";
         }
 

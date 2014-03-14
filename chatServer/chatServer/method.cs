@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace chatServer
 {
@@ -25,6 +26,10 @@ namespace chatServer
         public StringHandler strHandler;
         public EndPoint remoteEndPoint;
         public bool active = true;
+
+        public int ID;
+        public String sID;
+        public List<int> roomID;
 
         // constructor
         public chatSocket(Socket s)
