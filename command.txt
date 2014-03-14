@@ -1,0 +1,26 @@
+﻿server
+	List(user): ID, IP, photo, roomList...
+	List(roomID): ID(or IP), ...
+	可愛圖示
+client
+	List(user): ID, photo
+	可愛圖示
+
+client
+	一般訊息 "MESSAGE:roomID:senderID:color:message" (憤怒模式，client直接改message再傳出去)
+		server broadCast
+	大頭貼   "IDPHOTO:senderID" 第二個指令是檔案本身
+		server broadCast
+	傳送檔案 "FILE:senderID:receiverID" 第二個指令是檔案本身
+		server to receiverID "FILE:senderID" 第二個指令是檔案本身
+	悄悄話   "SECRETMESSAGE:senderID:receiverID:message"
+		server to receiverID "SECRETMESSAGE:senderID:message"
+	可愛圖示 "ICON:senderID:index"
+		server broadCast
+	新進的人 "WELCOME:ID"
+		server broadCast "Welcome: ID"
+		server broadCast "IDLISTUPDATE:ID:ID:..."(給client)
+	開房間   "NEWROOM:roomName:ID"()
+	即時搜尋 "SEARCHID:senderID:ID"
+		"SEARCHLISTUPDATE:ID:ID:..."
+	ID可用名稱及時搜尋
