@@ -50,6 +50,7 @@
             this.myNameTextBox = new System.Windows.Forms.TextBox();
             this.myImageBox = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -211,6 +212,7 @@
             // 
             this.userListPanel.AutoScroll = true;
             this.userListPanel.BackColor = System.Drawing.Color.Azure;
+            this.userListPanel.Controls.Add(this.button1);
             this.userListPanel.Controls.Add(this.tableLayoutPanel4);
             this.userListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userListPanel.Location = new System.Drawing.Point(6, 131);
@@ -374,6 +376,15 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(104, 216);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -430,6 +441,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
