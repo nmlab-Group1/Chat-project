@@ -28,62 +28,67 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.emoticonTable = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
-            this.emotionButton = new System.Windows.Forms.Button();
+            this.emoticonButton = new System.Windows.Forms.Button();
             this.chatTextBox = new System.Windows.Forms.TextBox();
             this.chatEnterButton = new System.Windows.Forms.Button();
             this.userListPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.emoticonPanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.myInfoPanel = new System.Windows.Forms.Panel();
             this.myNameTextBox = new System.Windows.Forms.TextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.emoticonButton2 = new System.Windows.Forms.Button();
+            this.emoticonButton1 = new System.Windows.Forms.Button();
             this.myImageBox = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.emoticonTable.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.userListPanel.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.emoticonPanel.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.myInfoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // emoticonTable
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 256F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.userListPanel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.myInfoPanel, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 128F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 562);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.emoticonTable.ColumnCount = 2;
+            this.emoticonTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 256F));
+            this.emoticonTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.emoticonTable.Controls.Add(this.tableLayoutPanel2, 0, 2);
+            this.emoticonTable.Controls.Add(this.tableLayoutPanel3, 1, 2);
+            this.emoticonTable.Controls.Add(this.userListPanel, 0, 1);
+            this.emoticonTable.Controls.Add(this.tabControl1, 1, 0);
+            this.emoticonTable.Controls.Add(this.myInfoPanel, 0, 0);
+            this.emoticonTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.emoticonTable.Location = new System.Drawing.Point(0, 0);
+            this.emoticonTable.Name = "emoticonTable";
+            this.emoticonTable.RowCount = 3;
+            this.emoticonTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.emoticonTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.emoticonTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.emoticonTable.Size = new System.Drawing.Size(784, 562);
+            this.emoticonTable.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
@@ -105,7 +110,7 @@
             this.searchTextBox.BackColor = System.Drawing.Color.Azure;
             this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.searchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.searchTextBox.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.searchTextBox.ForeColor = System.Drawing.Color.Gray;
             this.searchTextBox.Location = new System.Drawing.Point(3, 2);
             this.searchTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 0, 3);
@@ -114,8 +119,9 @@
             this.searchTextBox.TabIndex = 0;
             this.searchTextBox.Text = "search user";
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            this.searchTextBox.Enter += new System.EventHandler(this.searchTextBox_Enter);
             this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
-            this.searchTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.searchTextBox_MouseDown);
+            this.searchTextBox.Leave += new System.EventHandler(this.searchTextBox_Leave);
             // 
             // searchButton
             // 
@@ -141,7 +147,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.Controls.Add(this.button2, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.emotionButton, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.emoticonButton, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.chatTextBox, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.chatEnterButton, 3, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -155,7 +161,6 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.button2.BackgroundImage = global::chatRoomClient.Properties.Resources.open_folder_icon_cr;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.FlatAppearance.BorderSize = 0;
@@ -167,35 +172,37 @@
             this.button2.TabIndex = 3;
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // emotionButton
+            // emoticonButton
             // 
-            this.emotionButton.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.emotionButton.BackgroundImage = global::chatRoomClient.Properties.Resources.FHgF1mrAc_e;
-            this.emotionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.emotionButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emotionButton.FlatAppearance.BorderSize = 0;
-            this.emotionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.emotionButton.Location = new System.Drawing.Point(447, 4);
-            this.emotionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 2);
-            this.emotionButton.Name = "emotionButton";
-            this.emotionButton.Size = new System.Drawing.Size(20, 20);
-            this.emotionButton.TabIndex = 2;
-            this.emotionButton.UseVisualStyleBackColor = false;
+            this.emoticonButton.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.emoticonButton.BackgroundImage = global::chatRoomClient.Properties.Resources.FHgF1mrAc_e;
+            this.emoticonButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.emoticonButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.emoticonButton.FlatAppearance.BorderSize = 0;
+            this.emoticonButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.emoticonButton.Location = new System.Drawing.Point(447, 4);
+            this.emoticonButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 2);
+            this.emoticonButton.Name = "emoticonButton";
+            this.emoticonButton.Size = new System.Drawing.Size(20, 20);
+            this.emoticonButton.TabIndex = 2;
+            this.emoticonButton.UseVisualStyleBackColor = false;
+            this.emoticonButton.Click += new System.EventHandler(this.emoticonButton_Click);
             // 
             // chatTextBox
             // 
             this.chatTextBox.BackColor = System.Drawing.Color.Azure;
             this.chatTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.chatTextBox.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.chatTextBox.ForeColor = System.Drawing.Color.Gray;
             this.chatTextBox.Location = new System.Drawing.Point(3, 3);
             this.chatTextBox.Name = "chatTextBox";
             this.chatTextBox.Size = new System.Drawing.Size(438, 22);
             this.chatTextBox.TabIndex = 1;
             this.chatTextBox.Text = "type your message here";
+            this.chatTextBox.Enter += new System.EventHandler(this.chatTextBox_Enter);
             this.chatTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chatTextBox_KeyDown);
-            this.chatTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chatTextBox_MouseDown);
+            this.chatTextBox.Leave += new System.EventHandler(this.chatTextBox_Leave);
             // 
             // chatEnterButton
             // 
@@ -213,7 +220,6 @@
             // 
             this.userListPanel.AutoScroll = true;
             this.userListPanel.BackColor = System.Drawing.Color.Azure;
-            this.userListPanel.Controls.Add(this.textBox1);
             this.userListPanel.Controls.Add(this.tableLayoutPanel4);
             this.userListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userListPanel.Location = new System.Drawing.Point(6, 131);
@@ -238,19 +244,6 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(247, 99);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = global::chatRoomClient.Properties.Resources.pencil_2;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(48, 48);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
@@ -271,7 +264,7 @@
             this.label1.AutoSize = true;
             this.tableLayoutPanel5.SetColumnSpan(this.label1, 2);
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
@@ -285,13 +278,13 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabControl1.HotTrack = true;
             this.tabControl1.Location = new System.Drawing.Point(259, 3);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tableLayoutPanel1.SetRowSpan(this.tabControl1, 2);
+            this.emoticonTable.SetRowSpan(this.tabControl1, 2);
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.ShowToolTips = true;
             this.tabControl1.Size = new System.Drawing.Size(522, 524);
@@ -301,6 +294,7 @@
             // 
             this.tabPage1.AllowDrop = true;
             this.tabPage1.BackColor = System.Drawing.Color.Azure;
+            this.tabPage1.Controls.Add(this.emoticonPanel);
             this.tabPage1.Controls.Add(this.richTextBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
@@ -308,6 +302,40 @@
             this.tabPage1.Size = new System.Drawing.Size(514, 491);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Lobby";
+            // 
+            // emoticonPanel
+            // 
+            this.emoticonPanel.BackColor = System.Drawing.Color.White;
+            this.emoticonPanel.Controls.Add(this.tableLayoutPanel6);
+            this.emoticonPanel.Location = new System.Drawing.Point(319, 296);
+            this.emoticonPanel.Name = "emoticonPanel";
+            this.emoticonPanel.Size = new System.Drawing.Size(192, 192);
+            this.emoticonPanel.TabIndex = 1;
+            this.emoticonPanel.Visible = false;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 4;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.Controls.Add(this.emoticonButton2, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.emoticonButton1, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 8;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(192, 192);
+            this.tableLayoutPanel6.TabIndex = 0;
             // 
             // richTextBox1
             // 
@@ -346,20 +374,65 @@
             // 
             this.myNameTextBox.BackColor = System.Drawing.Color.Azure;
             this.myNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.myNameTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.myNameTextBox.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.myNameTextBox.Location = new System.Drawing.Point(107, 21);
             this.myNameTextBox.Name = "myNameTextBox";
             this.myNameTextBox.Size = new System.Drawing.Size(140, 22);
             this.myNameTextBox.TabIndex = 1;
             this.myNameTextBox.Text = "請輸入暱稱";
             this.myNameTextBox.TextChanged += new System.EventHandler(this.myNameTextBox_TextChanged);
+            this.myNameTextBox.Enter += new System.EventHandler(this.myNameTextBox_Enter);
             this.myNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myNameTextBox_KeyDown);
-            this.myNameTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.myNameTextBox_MouseDown);
+            this.myNameTextBox.Leave += new System.EventHandler(this.myNameTextBox_Leave);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::chatRoomClient.Properties.Resources.pencil_2;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
+            // emoticonButton2
+            // 
+            this.emoticonButton2.BackgroundImage = global::chatRoomClient.Properties.Resources._02;
+            this.emoticonButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.emoticonButton2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.emoticonButton2.FlatAppearance.BorderSize = 0;
+            this.emoticonButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.emoticonButton2.Location = new System.Drawing.Point(48, 0);
+            this.emoticonButton2.Margin = new System.Windows.Forms.Padding(0);
+            this.emoticonButton2.Name = "emoticonButton2";
+            this.emoticonButton2.Size = new System.Drawing.Size(48, 48);
+            this.emoticonButton2.TabIndex = 1;
+            this.emoticonButton2.UseVisualStyleBackColor = true;
+            this.emoticonButton2.Click += new System.EventHandler(this.emoticon_click);
+            // 
+            // emoticonButton1
+            // 
+            this.emoticonButton1.BackgroundImage = global::chatRoomClient.Properties.Resources._01;
+            this.emoticonButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.emoticonButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.emoticonButton1.FlatAppearance.BorderSize = 0;
+            this.emoticonButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.emoticonButton1.Location = new System.Drawing.Point(0, 0);
+            this.emoticonButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.emoticonButton1.Name = "emoticonButton1";
+            this.emoticonButton1.Size = new System.Drawing.Size(48, 48);
+            this.emoticonButton1.TabIndex = 0;
+            this.emoticonButton1.UseVisualStyleBackColor = true;
+            this.emoticonButton1.Click += new System.EventHandler(this.emoticon_click);
             // 
             // myImageBox
             // 
             this.myImageBox.BackColor = System.Drawing.Color.Azure;
-            this.myImageBox.Image = global::chatRoomClient.Properties.Resources.eraser;
+            this.myImageBox.BackgroundImage = global::chatRoomClient.Properties.Resources.eraser;
+            this.myImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.myImageBox.Location = new System.Drawing.Point(21, 21);
             this.myImageBox.Name = "myImageBox";
             this.myImageBox.Size = new System.Drawing.Size(80, 80);
@@ -378,15 +451,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(55, 243);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -394,26 +458,27 @@
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.emoticonTable);
             this.Controls.Add(this.pictureBox1);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.emoticonTable.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.userListPanel.ResumeLayout(false);
-            this.userListPanel.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.emoticonPanel.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.myInfoPanel.ResumeLayout(false);
             this.myInfoPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -423,7 +488,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel emoticonTable;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel userListPanel;
@@ -437,14 +502,17 @@
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.TextBox chatTextBox;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button emotionButton;
+        private System.Windows.Forms.Button emoticonButton;
         private System.Windows.Forms.Button chatEnterButton;
         private System.Windows.Forms.PictureBox myImageBox;
         private System.Windows.Forms.TextBox myNameTextBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel emoticonPanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Button emoticonButton2;
+        private System.Windows.Forms.Button emoticonButton1;
     }
 }
 
