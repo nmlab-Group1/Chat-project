@@ -50,7 +50,7 @@
             this.myNameTextBox = new System.Windows.Forms.TextBox();
             this.myImageBox = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -105,7 +105,7 @@
             this.searchTextBox.BackColor = System.Drawing.Color.Azure;
             this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.searchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchTextBox.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.searchTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.searchTextBox.ForeColor = System.Drawing.Color.Gray;
             this.searchTextBox.Location = new System.Drawing.Point(3, 2);
             this.searchTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 0, 3);
@@ -113,6 +113,7 @@
             this.searchTextBox.Size = new System.Drawing.Size(221, 22);
             this.searchTextBox.TabIndex = 0;
             this.searchTextBox.Text = "search user";
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
             this.searchTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.searchTextBox_MouseDown);
             // 
@@ -186,7 +187,7 @@
             this.chatTextBox.BackColor = System.Drawing.Color.Azure;
             this.chatTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatTextBox.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.chatTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.chatTextBox.ForeColor = System.Drawing.Color.Gray;
             this.chatTextBox.Location = new System.Drawing.Point(3, 3);
             this.chatTextBox.Name = "chatTextBox";
@@ -212,7 +213,7 @@
             // 
             this.userListPanel.AutoScroll = true;
             this.userListPanel.BackColor = System.Drawing.Color.Azure;
-            this.userListPanel.Controls.Add(this.button1);
+            this.userListPanel.Controls.Add(this.textBox1);
             this.userListPanel.Controls.Add(this.tableLayoutPanel4);
             this.userListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userListPanel.Location = new System.Drawing.Point(6, 131);
@@ -270,7 +271,7 @@
             this.label1.AutoSize = true;
             this.tableLayoutPanel5.SetColumnSpan(this.label1, 2);
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
@@ -284,7 +285,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tabControl1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabControl1.HotTrack = true;
             this.tabControl1.Location = new System.Drawing.Point(259, 3);
             this.tabControl1.Multiline = true;
@@ -345,12 +346,13 @@
             // 
             this.myNameTextBox.BackColor = System.Drawing.Color.Azure;
             this.myNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.myNameTextBox.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.myNameTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.myNameTextBox.Location = new System.Drawing.Point(107, 21);
             this.myNameTextBox.Name = "myNameTextBox";
             this.myNameTextBox.Size = new System.Drawing.Size(140, 22);
             this.myNameTextBox.TabIndex = 1;
             this.myNameTextBox.Text = "請輸入暱稱";
+            this.myNameTextBox.TextChanged += new System.EventHandler(this.myNameTextBox_TextChanged);
             this.myNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myNameTextBox_KeyDown);
             this.myNameTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.myNameTextBox_MouseDown);
             // 
@@ -376,14 +378,14 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // textBox1
             // 
-            this.button1.Location = new System.Drawing.Point(104, 216);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.textBox1.Location = new System.Drawing.Point(55, 243);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // Form1
             // 
@@ -403,6 +405,7 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.userListPanel.ResumeLayout(false);
+            this.userListPanel.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -441,7 +444,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

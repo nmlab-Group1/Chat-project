@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿
+using System;
+using System.IO;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Collections;
 
 namespace chatRoomClient
 {
@@ -17,11 +12,16 @@ namespace chatRoomClient
         bool isFirstSearchClick;
         bool isFirstChatClick;
         bool isFirstMyNameClick;
-        
+
+        bool isIDAvailable;
+        bool isRegister;
+
         Color backgroundColor;
         Color lightColor;
         Color darkColor;
 
+        chatSocket client = null;
+        StringHandler msgHandler;
 
         public Form1()
         {
@@ -31,10 +31,19 @@ namespace chatRoomClient
             isFirstSearchClick = true;
             isFirstChatClick = true;
             isFirstMyNameClick = true;
-            
+
+            isIDAvailable = false;
+            isRegister = false;
+
             backgroundColor = System.Drawing.Color.PaleTurquoise;
             lightColor = System.Drawing.Color.Azure;
             darkColor = System.Drawing.Color.LightSeaGreen;
+
+            msgHandler = parseReceiveMessage;
+
+            client = chatSocket.connect();
+            client.newListener(parseReceiveMessage);
+            sendChatMessage("REGNEWUSER:");
         }
 
         private void changeTheme()
@@ -75,14 +84,51 @@ namespace chatRoomClient
             }
         }
 
+        private String parseReceiveMessage(String msg)
+        {
+            char[] del = { ':' };
+            String[] words = msg.Split(del);
+
+            if (words[0].Equals("AVAILABLEID"))
+            {
+                if (words[1].Equals("USABLE"))
+                {
+                    isIDAvailable = true;
+                }
+                else if (words[1].Equals(""))
+                {
+                    isIDAvailable = false;
+                }
+            }
+
+            return "";
+        }
+
         private void sendChatMessage(string chatMessage)
         {
             //todo
+            client.sendMessage(chatMessage);
         }
 
         private void myImageBox_Click(object sender, EventArgs e)
         {
             //todo
+            if (!isRegister)
+                return;
+
+            OpenFileDialog fd = new OpenFileDialog();
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fs = File.OpenRead(fd.FileName);
+                int fileLength = (int)fs.Length;
+                Byte[] image = new Byte[fileLength];
+                fs.Read(image, 0, fileLength);
+                myImageBox.BackgroundImage = Image.FromStream(fs);
+                fs.Close();
+
+                sendChatMessage("IDPHOTO:" + myNameTextBox.Text + ':' + fileLength);
+                // sed the file
+            }
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -94,8 +140,11 @@ namespace chatRoomClient
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if ( registerMyName(myNameTextBox.Text) == true )
+                if ( isIDAvailable )
                 {
+                    myNameTextBox.Text = myNameTextBox.Text.Trim();
+                    sendChatMessage("WELCOME:" + myNameTextBox.Text);
+                    isRegister = true;
                     myNameTextBox.Enabled = false;
                     this.myNameTextBox.BackColor = backgroundColor;
                 }
@@ -104,12 +153,6 @@ namespace chatRoomClient
                     MessageBox.Show("\"" + myNameTextBox.Text + "\" has been registered by someone else.");
                 }
             }
-        }
-
-        private bool registerMyName(string myName)
-        {
-            //todo;
-            return true;
         }
 
         private void chatTextBox_MouseDown(object sender, MouseEventArgs e)
@@ -139,6 +182,28 @@ namespace chatRoomClient
                 isFirstMyNameClick = false;
                 myNameTextBox.Clear();
             }
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            textBox1.Text = "ENTER";
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            textBox1.Text = "LEAVE";
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!isRegister)
+                return;
+            sendChatMessage("SEARCHID" + myNameTextBox.Text.Trim() + ':' + searchTextBox.Text.Trim());
+        }
+
+        private void myNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            sendChatMessage("AVAILABLEID:" + myNameTextBox.Text.Trim());
         }
     }
 }
