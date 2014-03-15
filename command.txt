@@ -1,32 +1,46 @@
 ﻿server
-	List(user): ID, IP, photo, roomList...
-	List(roomID): ID(or IP), ...
-	可愛圖示
-client
-	List(user): ID, photo, roomID
-	可愛圖示
+	List<chatRoom>
+	List<chatSocket>
 
 client
-	一般訊息 "MESSAGE:roomID:senderID:color:message" (憤怒模式，client直接改message再傳出去)
-		server broadCast
-	大頭貼   "IDPHOTO:senderID:fileLength" 第二個指令是檔案本身
-		server broadCast
-	傳送檔案 "FILE:senderID:receiverID" 第二個指令是檔案本身
-		server to receiverID "FILE:senderID" 第二個指令是檔案本身
-	悄悄話   "SECRETMESSAGE:senderID:receiverID:message"
-		server to receiverID "SECRETMESSAGE:senderID:message"
-	可愛圖示 "ICON:senderID:index"
-		server broadCast
-	新進的人 "WELCOME:ID"
-		server broadCast "Welcome: ID"
-		server broadCast "IDLISTUPDATE:ID:ID:..."(給client)
-	開房間   "NEWROOM:roomName:ID"()
-	即時搜尋 "SEARCHID:senderID:ID"
-		"SEARCHLISTUPDATE:ID:ID:..."
+	Socket
+	int ID
+	String sID
+	List<int> roomID
 
+client
+	"AVAILABLEID:senderID:sID" 檢查sID用過了沒
+		server傳給sender "AVAILABLEID:USED"或"AVAILABLEID:USABLE"
 
+	"MESSAGE:roomID:senderID:color:message" 一般的文字訊息
+		server傳給room "MESSAGE:senderID:color:message"
 
-	可用ID   "AVAILABLEID:senderID:ID"
-		server check for IDlist, send to sender "AVAILABLEID:USABLE" or "AVAILABLEID:USED"
-	初始化
-		server send a new ID(int) to user "REGNEWUSER:ID"
+	"IDPHOTO:senderID:fileLength" 有人換頭像的時候傳的訊息
+		server接收檔案
+		server傳給所有人 "IDPHOTO:senderID:fileLength"
+		server傳給所有人檔案
+
+	"FILE:senderID:receiverID:fileLength" 兩個人互傳檔案
+		server接收檔案
+		server傳給receiver "FILE:senderID:fileLength"
+		server傳給receiver檔案
+
+	"SEARCHID:senderID:ID" 搜尋ID(包含子字串就算有了)
+		sever傳給sender "SEARCHLISTUPDATE:ID:ID:..."
+
+	"SECRETMESSAGE:senderID:receiverID:message" 悄悄話
+		server傳給receiver "SECRETMESSAGE:senderID:message"
+
+	"PIC:roomID:senderID:index" 可愛圖示
+		server傳給room "PIC:senderID:index"
+
+	"WELCOME:senderID:sID" 字名字那裏按Enter
+		server把sID記錄到client.sID
+		server傳給Lobby "WELCOME:sID"
+
+	"NEWROOM:roomName:senderID" 開房間
+		server傳給sender "NEWROOM:" + roomID
+
+misc
+	要有預設頭像
+	還沒做邀請進房間

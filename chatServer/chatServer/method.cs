@@ -29,7 +29,7 @@ namespace chatServer
 
         public int ID;
         public String sID;
-        public List<int> roomID;
+        public List<int> roomIDList;
 
         // constructor
         public chatSocket(Socket s)
@@ -87,6 +87,19 @@ namespace chatServer
                 active = false;
                 Console.WriteLine(e.Message);
             }
+        }
+    }
+
+    public class chatRoom
+    {
+        public int ID;
+        public String sID;
+        public List<chatSocket> clientList;
+
+        public chatRoom(int roomID, String roomsID)
+        {
+            ID = roomID;
+            sID = roomsID;
         }
     }
 }
