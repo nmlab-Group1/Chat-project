@@ -29,7 +29,7 @@ namespace chatServer
 
         public int ID;
         public String sID;
-        public List<int> roomIDList;
+        public List<int> roomIDList = new List<int>();
 
         // constructor
         public chatSocket(Socket s)
@@ -100,6 +100,7 @@ namespace chatServer
         {
             ID = roomID;
             sID = roomsID;
+            clientList = new List<chatSocket>();
         }
     }
 }

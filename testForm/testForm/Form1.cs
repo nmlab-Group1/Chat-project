@@ -40,10 +40,9 @@ namespace chatRoomClient
             darkColor = System.Drawing.Color.LightSeaGreen;
 
             msgHandler = parseReceiveMessage;
-            /*
+            
             client = chatSocket.connect();
             client.newListener(parseReceiveMessage);
-            sendChatMessage("REGNEWUSER:");*/
         }
 
         private void changeTheme()
@@ -57,195 +56,131 @@ namespace chatRoomClient
 
             this.searchTextBox.ForeColor = darkColor;
         }
-        //
-        // myNameTextBox
-        //
-        private void myNameTextBox_Enter(object sender, EventArgs e)
-        {
-            if (isMyNameTextBoxEmpty)
-            {
-                isMyNameTextBoxEmpty = false;
-                myNameTextBox.Clear();
-            }
-        }
-
-        private void myNameTextBox_Leave(object sender, EventArgs e)
-        {
-            if (myNameTextBox.Text.Trim().Length == 0)
-            {
-                this.myNameTextBox.Text = "請輸入暱稱";
-                isMyNameTextBoxEmpty = true;
-            }
-        }
-
-        private void myNameTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (isIDAvailable)
-                {
-                    myNameTextBox.Text = myNameTextBox.Text.Trim();
-                    sendChatMessage("WELCOME:" + myNameTextBox.Text);
-                    isRegister = true;
-                    myNameTextBox.Enabled = false;
-                    this.myNameTextBox.BackColor = backgroundColor;
-                }
-                else
-                {
-                    MessageBox.Show("\"" + myNameTextBox.Text + "\" has been registered by someone else.");
-                }
-            }
-        }
-
-        private void myNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            sendChatMessage("AVAILABLEID:" + myNameTextBox.Text.Trim());
-        }
-        // 
-        // searchTextBox
-        // 
-        private void searchTextBox_Enter(object sender, EventArgs e)
-        {
-            if (isSearchTextBoxEmpty)
-            {
-                isSearchTextBoxEmpty = false;
-                searchTextBox.Clear();
-                this.searchTextBox.ForeColor = System.Drawing.Color.Black;
-            }
-        }
-
-        private void searchTextBox_Leave(object sender, EventArgs e)
-        {
-            if (searchTextBox.Text.Trim().Length == 0)
-            {
-                this.searchTextBox.ForeColor = System.Drawing.Color.Gray;
-                this.searchTextBox.Text = "search user";
-                isSearchTextBoxEmpty = true;
-            }
-        }
-
-        private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                searchUser(searchTextBox.Text);
-            }
-        }
-
-        private void searchTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (!isRegister)
-                return;
-            sendChatMessage("SEARCHID" + myNameTextBox.Text.Trim() + ':' + searchTextBox.Text.Trim());
-        }
-        // 
-        // chatTextBox
-        // 
-        private void chatTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                sendChatMessage(chatTextBox.Text);
-            }
-        }
-
-        private void chatTextBox_Enter(object sender, EventArgs e)
-        {
-            if (isChatTextBoxEmpty)
-            {
-                isChatTextBoxEmpty = false;
-                chatTextBox.Clear();
-                this.chatTextBox.ForeColor = System.Drawing.Color.Black;
-            }
-        }
-
-        private void chatTextBox_Leave(object sender, EventArgs e)
-        {
-            if (chatTextBox.Text.Trim().Length == 0)
-            {
-                this.chatTextBox.ForeColor = System.Drawing.Color.Gray;
-                this.chatTextBox.Text = "type your message here";
-                isChatTextBoxEmpty = true;
-            }
-        }
-        //
-        // others
-        //
-
-        private void searchButton_Click(object sender, EventArgs e)
-        {
-            searchUser(searchTextBox.Text);
-        }
-
+        
         private void searchUser(string username)
         {
             //todo
         }
 
-        private String parseReceiveMessage(String msg)
+        public String parseReceiveMessage(String msg)
         {
             char[] del = { ':' };
             String[] words = msg.Split(del);
 
-            if (words[0].Equals("AVAILABLEID"))
-            {
+            // richTextBox1.Text = msg;
+
+            if (words[0].Equals("MESSAGE"))
+            {// MESSAGE:sendersID:color:message
+                Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
+                Action textAction = () => richTextBox1.AppendText(words[1] + ": " + DateTime.Now.ToLocalTime() + '\n');
+                richTextBox1.Invoke(colorAction);
+                richTextBox1.Invoke(textAction);
+                Action colorAction2 = () => richTextBox1.SelectionColor = Color.FromArgb(Convert.ToInt32(words[2]));
+                Action textAction2 = () => richTextBox1.AppendText("    " + words[3] + '\n');
+                richTextBox1.Invoke(colorAction2);
+                richTextBox1.Invoke(textAction2);
+            }
+
+            else if (words[0].Equals("AVAILABLEID"))
+            {// AVAILABLEID:USED or AVAILABLEID:USABLE
                 if (words[1].Equals("USABLE"))
                 {
                     isIDAvailable = true;
                 }
-                else if (words[1].Equals(""))
+                else if (words[1].Equals("USED"))
                 {
                     isIDAvailable = false;
                 }
             }
 
+            else if (words[0].Equals("IDPHOTO"))
+            {// IDPHOTO:senderID:fileLength
+                Byte[] buffer = new Byte[Convert.ToInt32(words[2])];
+                fileFromServer(buffer);
+                // paste the image
+                String fileName = "tempFile" + client.GetHashCode();
+                File.WriteAllBytes(fileName, buffer);
+                FileStream fs = File.OpenRead(fileName);
+                myImageBox.Image = Image.FromStream(fs);
+                fs.Close();
+            }
+
+            else if (words[0].Equals("FILE"))
+            {// FILE:senderID:fileLength
+                Byte[] buffer = new Byte[Convert.ToInt32(words[2])];
+                fileFromServer(buffer);
+
+                SaveFileDialog sd = new SaveFileDialog();
+                if(sd.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllBytes(sd.FileName, buffer);
+                }
+            }
+
+            else if (words[0].Equals("SEARCHLISTUPDATE"))
+            {// SEARCHLISTUPDATE:sID:sID:...
+
+            }
+
+            else if (words[0].Equals("SECRETMESSAGE"))
+            {// SECRETMESSAGE:sendersID:message
+                MessageBox.Show(words[1] + " sent you secret message" + 
+                    DateTime.Now.ToLocalTime() + '\n' + words[2]);
+            }
+
+            else if (words[0].Equals("PIC"))
+            {// PIC:sendersID:index
+                Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
+                Action textAction = () => richTextBox1.AppendText(words[1] + ": " + DateTime.Now.ToLocalTime() + '\n');
+                richTextBox1.Invoke(colorAction);
+                richTextBox1.Invoke(textAction);
+                // richTextBox1.AppendText("    ");
+                // pic here
+                // richTextBox1.AppendText("\n");
+            }
+
+            else if (words[0].Equals("WELCOME"))
+            {// WELCOME:sID
+                Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
+                Action textAction = () => richTextBox1.AppendText(words[1] + " joined in\n");
+                richTextBox1.Invoke(colorAction);
+                richTextBox1.Invoke(textAction);
+            }
+
+            else if (words[0].Equals("NEWROOM"))
+            {// NEWROOM:roomID:sID:sID:...
+                if (words.Length == 3)
+                {
+                    // goto new tab with title (client.sID + " and " + words[1])
+                }
+                else
+                {
+                    // goto new tab with title (New room)
+                }
+                client.roomIDList.Add(Convert.ToInt32(words[2]));
+                // client.activeRoom = ????;
+            }
+
+            else if (words[0].Equals("REGNEWUSER"))
+            {// REGNEWUSER:ID
+                client.ID = Convert.ToInt32(words[1]);
+            }
+
             return "";
         }
 
-        private void sendChatMessage(string chatMessage)
+        private void fileFromServer(Byte[] buffer)
         {
-            //todo
-            //client.sendMessage(chatMessage);
+            int received = 0;
+            while(received < buffer.Length)
+                received += client.socket.Receive(buffer, received, buffer.Length - received, System.Net.Sockets.SocketFlags.None);
         }
 
-        private void myImageBox_Click(object sender, EventArgs e)
+        private void fileToServer(Byte[] buffer)
         {
-            //todo
-            if (!isRegister)
-                return;
-
-            OpenFileDialog fd = new OpenFileDialog();
-            if (fd.ShowDialog() == DialogResult.OK)
-            {
-                FileStream fs = File.OpenRead(fd.FileName);
-                int fileLength = (int)fs.Length;
-                Byte[] image = new Byte[fileLength];
-                fs.Read(image, 0, fileLength);
-                myImageBox.BackgroundImage = Image.FromStream(fs);
-                fs.Close();
-
-                sendChatMessage("IDPHOTO:" + myNameTextBox.Text + ':' + fileLength);
-                // sed the file
-            }
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void emoticon_click(object sender, EventArgs e)
-        {
-            Image emotionImg = global::chatRoomClient.Properties.Resources._02;// Image.FromFile("D:\\roger\\nmlab\\testWindowsForm\\icon\\tuzki\\05.gif");
-            Clipboard.SetImage(emotionImg);
-            richTextBox1.Paste();
-            Clipboard.Clear();
-            this.emoticonPanel.Visible = false;
-        }
-
-        private void emoticonButton_Click(object sender, EventArgs e)
-        {
-            this.emoticonPanel.Visible = true;
+            int sent = 0;
+            while (sent < buffer.Length)
+                sent += client.socket.Send(buffer, sent, buffer.Length - sent, System.Net.Sockets.SocketFlags.None);
         }
     }
 }

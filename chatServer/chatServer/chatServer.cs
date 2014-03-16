@@ -74,6 +74,13 @@ namespace chatServer
                 bool found = false;
                 foreach (chatSocket client in clientList)
                 {
+                    Console.WriteLine("sID = " + client.sID);
+
+                    if (String.IsNullOrEmpty(client.sID))
+                    {
+                        continue;
+                    }
+
                     if (client.sID.Equals(words[2]))
                     {
                         found = true;
@@ -93,7 +100,8 @@ namespace chatServer
 
             else if (words[0].Equals("MESSAGE"))
             {// MESSAGE:roomID:senderID:color:message
-                msg = words[0] + ':' + words[2] + ':' + words[3] + ':' + words[4];
+                chatSocket client = clientNo(Convert.ToInt32(words[2]));
+                msg = words[0] + ':' + client.sID + ':' + words[3] + ':' + words[4];
                 messageToRoom(Convert.ToInt32(words[1]), msg);
                 // leave the time issue to client side
                 // and client does not need to know the roomID
@@ -149,13 +157,15 @@ namespace chatServer
 
             else if (words[0].Equals("SECRETMESSAGE"))
             {// SECRETMESSAGE:senderID:receiverID:message
-                msg = words[0] + ':' + words[1] + ':' + words[3];
+                chatSocket client = clientNo(Convert.ToInt32(words[2]));
+                msg = words[0] + ':' + client.sID + ':' + words[3];
                 messageToPerson(Convert.ToInt32(words[2]), msg);
             }
 
             else if (words[0].Equals("PIC"))
             {// PIC:roomID:senderID:index
-                msg = words[0] + ':' + words[2] + ':' + words[3];
+                chatSocket client = clientNo(Convert.ToInt32(words[2]));
+                msg = words[0] + ':' + client.sID + ':' + words[3];
                 messageToRoom(Convert.ToInt32(words[1]), msg);
             }
 

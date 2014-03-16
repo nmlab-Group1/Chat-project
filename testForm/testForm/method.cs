@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace chatRoomClient
 {
@@ -25,6 +26,10 @@ namespace chatRoomClient
         public StringHandler strHandler;
         public EndPoint remoteEndPoint;
         public bool active = true;
+
+        public int ID;
+        public String sID;
+        public List<int> roomIDList = new List<int>();
 
         // constructor
         public chatSocket(Socket s)
@@ -77,10 +82,25 @@ namespace chatRoomClient
                     strHandler(line);
                 }
             }
-            catch
+            catch (Exception e)
             {
                 active = false;
+                Console.WriteLine(e.Message);
             }
+        }
+    }
+
+    public class chatRoom
+    {
+        public int ID;
+        public String sID;
+        public List<chatSocket> clientList;
+
+        public chatRoom(int roomID, String roomsID)
+        {
+            ID = roomID;
+            sID = roomsID;
+            clientList = new List<chatSocket>();
         }
     }
 }
