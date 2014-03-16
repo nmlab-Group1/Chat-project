@@ -164,7 +164,7 @@ namespace chatRoomClient
             if (chatTextBox.Text.Trim().Length == 0)
             {
                 this.chatTextBox.ForeColor = System.Drawing.Color.Gray;
-                this.chatTextBox.Text = "search user";
+                this.chatTextBox.Text = "type your message here";
                 isChatTextBoxEmpty = true;
             }
         }
