@@ -33,7 +33,7 @@
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.textColorButton = new System.Windows.Forms.Button();
             this.emoticonButton = new System.Windows.Forms.Button();
             this.chatTextBox = new System.Windows.Forms.TextBox();
             this.chatEnterButton = new System.Windows.Forms.Button();
@@ -44,11 +44,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.emoticonPanel = new System.Windows.Forms.Panel();
             this.emoticonTable = new System.Windows.Forms.TableLayoutPanel();
             this.emoticonButton2 = new System.Windows.Forms.Button();
             this.emoticonButton1 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.myInfoPanel = new System.Windows.Forms.Panel();
             this.myNameTextBox = new System.Windows.Forms.TextBox();
@@ -136,7 +136,6 @@
             this.searchButton.Size = new System.Drawing.Size(20, 20);
             this.searchButton.TabIndex = 1;
             this.searchButton.UseVisualStyleBackColor = false;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -145,7 +144,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel3.Controls.Add(this.button2, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.textColorButton, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.emoticonButton, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.chatTextBox, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.chatEnterButton, 3, 0);
@@ -157,19 +156,20 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(522, 26);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // button2
+            // textColorButton
             // 
-            this.button2.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(473, 4);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(20, 20);
-            this.button2.TabIndex = 3;
-            this.button2.UseVisualStyleBackColor = false;
+            this.textColorButton.BackColor = System.Drawing.Color.Black;
+            this.textColorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.textColorButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textColorButton.FlatAppearance.BorderSize = 0;
+            this.textColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.textColorButton.Location = new System.Drawing.Point(473, 4);
+            this.textColorButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 2);
+            this.textColorButton.Name = "textColorButton";
+            this.textColorButton.Size = new System.Drawing.Size(20, 20);
+            this.textColorButton.TabIndex = 3;
+            this.textColorButton.UseVisualStyleBackColor = false;
+            this.textColorButton.Click += new System.EventHandler(this.changeColor);
             // 
             // emoticonButton
             // 
@@ -206,6 +206,7 @@
             // chatEnterButton
             // 
             this.chatEnterButton.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.chatEnterButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chatEnterButton.FlatAppearance.BorderSize = 0;
             this.chatEnterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chatEnterButton.Location = new System.Drawing.Point(499, 4);
@@ -315,18 +316,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Lobby";
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.Color.Azure;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(508, 485);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            // 
             // emoticonPanel
             // 
             this.emoticonPanel.BackColor = System.Drawing.Color.White;
@@ -390,6 +379,18 @@
             this.emoticonButton1.TabIndex = 0;
             this.emoticonButton1.UseVisualStyleBackColor = true;
             this.emoticonButton1.Click += new System.EventHandler(this.emoticon_click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.Azure;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(508, 485);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // tabPage2
             // 
@@ -501,7 +502,7 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.TextBox chatTextBox;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button textColorButton;
         private System.Windows.Forms.Button emoticonButton;
         private System.Windows.Forms.Button chatEnterButton;
         private System.Windows.Forms.PictureBox myImageBox;

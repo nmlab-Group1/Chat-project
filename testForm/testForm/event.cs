@@ -94,27 +94,13 @@ namespace chatRoomClient
         // 
         // chatTextBox
         // 
-        private void chatTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (!isRegister)
-                return;
-
-            if (e.KeyCode == Keys.Enter)
-            {
-                String msg = "MESSAGE:" + '0' + ':' + client.ID + ':' + chatTextBox.ForeColor.ToArgb() + ':' + chatTextBox.Text;
-                                       // room?
-                client.sendMessage(msg);
-                chatTextBox.Clear();
-            }
-        }
-
         private void chatTextBox_Enter(object sender, EventArgs e)
         {
             if (isChatTextBoxEmpty)
             {
                 isChatTextBoxEmpty = false;
                 chatTextBox.Clear();
-                this.chatTextBox.ForeColor = System.Drawing.Color.Black;
+                this.chatTextBox.ForeColor = client.color;
             }
         }
 
@@ -127,14 +113,24 @@ namespace chatRoomClient
                 isChatTextBoxEmpty = true;
             }
         }
+        
+        private void chatTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!isRegister)
+                return;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                String msg = "MESSAGE:" + '0' + ':' + client.ID + ':' + client.color.ToArgb() + ':' + chatTextBox.Text;
+                                       // room?
+                client.sendMessage(msg);
+                chatTextBox.Clear();
+            }
+        }
+
         //
         // others
         //
-
-        private void searchButton_Click(object sender, EventArgs e)
-        {
-            // searchUser(searchTextBox.Text);
-        }
 
         private void myImageBox_Click(object sender, EventArgs e)
         {
@@ -156,11 +152,6 @@ namespace chatRoomClient
             }
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void emoticon_click(object sender, EventArgs e)
         {
             Image emotionImg = global::chatRoomClient.Properties.Resources._02;// Image.FromFile("D:\\roger\\nmlab\\testWindowsForm\\icon\\tuzki\\05.gif");
@@ -173,6 +164,20 @@ namespace chatRoomClient
         private void emoticonButton_Click(object sender, EventArgs e)
         {
             this.emoticonPanel.Visible = true;
+        }
+
+        private void changeColor(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == DialogResult.OK)
+                client.color = cd.Color;
+            textColorButton.BackColor = cd.Color;
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionStart = richTextBox1.TextLength;
+            richTextBox1.ScrollToCaret();
         }
     }
 }

@@ -57,11 +57,6 @@ namespace chatRoomClient
             this.searchTextBox.ForeColor = darkColor;
         }
         
-        private void searchUser(string username)
-        {
-            //todo
-        }
-
         public String parseReceiveMessage(String msg)
         {
             char[] del = { ':' };
@@ -182,5 +177,6 @@ namespace chatRoomClient
             while (sent < buffer.Length)
                 sent += client.socket.Send(buffer, sent, buffer.Length - sent, System.Net.Sockets.SocketFlags.None);
         }
+
     }
 }

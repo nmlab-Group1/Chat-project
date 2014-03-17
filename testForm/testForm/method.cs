@@ -30,6 +30,7 @@ namespace chatRoomClient
         public int ID;
         public String sID;
         public List<int> roomIDList = new List<int>();
+        public System.Drawing.Color color = new System.Drawing.Color();
 
         // constructor
         public chatSocket(Socket s)
