@@ -81,10 +81,12 @@ namespace chatRoomClient
                 if (words[1].Equals("USABLE"))
                 {
                     isIDAvailable = true;
+                    this.availableIDpictureBox.BackgroundImage = global::chatRoomClient.Properties.Resources.tick;
                 }
                 else if (words[1].Equals("USED"))
                 {
                     isIDAvailable = false;
+                    this.availableIDpictureBox.BackgroundImage = global::chatRoomClient.Properties.Resources.cross;
                 }
             }
 
@@ -177,6 +179,5 @@ namespace chatRoomClient
             while (sent < buffer.Length)
                 sent += client.socket.Send(buffer, sent, buffer.Length - sent, System.Net.Sockets.SocketFlags.None);
         }
-
     }
 }

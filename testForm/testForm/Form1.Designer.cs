@@ -51,9 +51,13 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.myInfoPanel = new System.Windows.Forms.Panel();
+            this.availableIDpictureBox = new System.Windows.Forms.PictureBox();
             this.myNameTextBox = new System.Windows.Forms.TextBox();
             this.myImageBox = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.formTable.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -66,8 +70,10 @@
             this.emoticonPanel.SuspendLayout();
             this.emoticonTable.SuspendLayout();
             this.myInfoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableIDpictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // formTable
@@ -221,7 +227,6 @@
             this.userListPanel.AutoScroll = true;
             this.userListPanel.BackColor = System.Drawing.Color.Azure;
             this.userListPanel.Controls.Add(this.tableLayoutPanel4);
-            this.userListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userListPanel.Location = new System.Drawing.Point(6, 131);
             this.userListPanel.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.userListPanel.Name = "userListPanel";
@@ -238,10 +243,10 @@
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(247, 99);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(247, 48);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // pictureBox2
@@ -259,9 +264,9 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(48, 0);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
@@ -275,7 +280,6 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.tableLayoutPanel5.SetColumnSpan(this.label1, 2);
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(3, 3);
@@ -406,6 +410,7 @@
             // 
             // myInfoPanel
             // 
+            this.myInfoPanel.Controls.Add(this.availableIDpictureBox);
             this.myInfoPanel.Controls.Add(this.myNameTextBox);
             this.myInfoPanel.Controls.Add(this.myImageBox);
             this.myInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -414,14 +419,24 @@
             this.myInfoPanel.Size = new System.Drawing.Size(250, 122);
             this.myInfoPanel.TabIndex = 4;
             // 
+            // availableIDpictureBox
+            // 
+            this.availableIDpictureBox.BackgroundImage = global::chatRoomClient.Properties.Resources.cross;
+            this.availableIDpictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.availableIDpictureBox.Location = new System.Drawing.Point(224, 21);
+            this.availableIDpictureBox.Name = "availableIDpictureBox";
+            this.availableIDpictureBox.Size = new System.Drawing.Size(26, 26);
+            this.availableIDpictureBox.TabIndex = 2;
+            this.availableIDpictureBox.TabStop = false;
+            // 
             // myNameTextBox
             // 
             this.myNameTextBox.BackColor = System.Drawing.Color.Azure;
             this.myNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.myNameTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.myNameTextBox.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.myNameTextBox.Location = new System.Drawing.Point(107, 21);
             this.myNameTextBox.Name = "myNameTextBox";
-            this.myNameTextBox.Size = new System.Drawing.Size(140, 22);
+            this.myNameTextBox.Size = new System.Drawing.Size(111, 26);
             this.myNameTextBox.TabIndex = 1;
             this.myNameTextBox.Text = "請輸入暱稱";
             this.myNameTextBox.TextChanged += new System.EventHandler(this.myNameTextBox_TextChanged);
@@ -452,6 +467,37 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.button2);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(199, 24);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(16, 16);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(25, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(16, 16);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -480,8 +526,10 @@
             this.emoticonTable.ResumeLayout(false);
             this.myInfoPanel.ResumeLayout(false);
             this.myInfoPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableIDpictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -514,6 +562,10 @@
         private System.Windows.Forms.TableLayoutPanel emoticonTable;
         private System.Windows.Forms.Button emoticonButton2;
         private System.Windows.Forms.Button emoticonButton1;
+        private System.Windows.Forms.PictureBox availableIDpictureBox;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

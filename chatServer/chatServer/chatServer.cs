@@ -74,8 +74,6 @@ namespace chatServer
                 bool found = false;
                 foreach (chatSocket client in clientList)
                 {
-                    Console.WriteLine("sID = " + client.sID);
-
                     if (String.IsNullOrEmpty(client.sID))
                     {
                         continue;
