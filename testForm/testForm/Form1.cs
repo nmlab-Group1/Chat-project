@@ -99,8 +99,13 @@ namespace chatRoomClient
 
         private void myNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!myNameTextBox.Text.Trim().Equals(""))
+            if (myNameTextBox.Text.Trim().Length != 0)
                 client.sendMessage("AVAILABLEID:" + client.ID + ':' + myNameTextBox.Text.Trim());
+            else
+            {
+                isIDAvailable = false;
+                this.availableIDpictureBox.BackgroundImage = global::chatRoomClient.Properties.Resources.cross;
+            }
         }
         // 
         // searchTextBox
@@ -241,6 +246,11 @@ namespace chatRoomClient
             //printEmoticon((int)this.ActiveControl.Tag);
             client.sendMessage("PIC:" + '0' + ':' + client.ID + ':' + ActiveControl.Tag.ToString());
             emoticonFlowPanel.Visible = false;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

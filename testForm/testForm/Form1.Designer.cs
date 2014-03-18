@@ -31,12 +31,16 @@
             this.formTable = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.searchButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.textColorButton = new System.Windows.Forms.Button();
+            this.emoticonPanelButton = new System.Windows.Forms.Button();
             this.chatTextBox = new System.Windows.Forms.TextBox();
             this.chatButton3 = new System.Windows.Forms.Button();
             this.myInfoPanel = new System.Windows.Forms.Panel();
+            this.availableIDpictureBox = new System.Windows.Forms.PictureBox();
             this.myNameTextBox = new System.Windows.Forms.TextBox();
+            this.myImageBox = new System.Windows.Forms.PictureBox();
             this.chatRoomPanel = new System.Windows.Forms.Panel();
             this.emoticonFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -45,31 +49,27 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.userListPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.emoticonPanelButton = new System.Windows.Forms.Button();
-            this.availableIDpictureBox = new System.Windows.Forms.PictureBox();
-            this.myImageBox = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.formTable.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.myInfoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableIDpictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).BeginInit();
             this.chatRoomPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.userListPanel.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.availableIDpictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,6 +126,21 @@
             this.searchTextBox.Enter += new System.EventHandler(this.searchTextBox_Enter);
             this.searchTextBox.Leave += new System.EventHandler(this.searchTextBox_Leave);
             // 
+            // searchButton
+            // 
+            this.searchButton.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.searchButton.BackgroundImage = global::chatRoomClient.Properties.Resources.search;
+            this.searchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.searchButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchButton.FlatAppearance.BorderSize = 0;
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Location = new System.Drawing.Point(230, 4);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(6, 4, 0, 2);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(20, 20);
+            this.searchButton.TabIndex = 1;
+            this.searchButton.UseVisualStyleBackColor = false;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 4;
@@ -159,6 +174,22 @@
             this.textColorButton.TabIndex = 3;
             this.textColorButton.UseVisualStyleBackColor = false;
             this.textColorButton.Click += new System.EventHandler(this.changeColor);
+            // 
+            // emoticonPanelButton
+            // 
+            this.emoticonPanelButton.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.emoticonPanelButton.BackgroundImage = global::chatRoomClient.Properties.Resources.FHgF1mrAc_e;
+            this.emoticonPanelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.emoticonPanelButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.emoticonPanelButton.FlatAppearance.BorderSize = 0;
+            this.emoticonPanelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.emoticonPanelButton.Location = new System.Drawing.Point(447, 4);
+            this.emoticonPanelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 2);
+            this.emoticonPanelButton.Name = "emoticonPanelButton";
+            this.emoticonPanelButton.Size = new System.Drawing.Size(20, 20);
+            this.emoticonPanelButton.TabIndex = 2;
+            this.emoticonPanelButton.UseVisualStyleBackColor = false;
+            this.emoticonPanelButton.Click += new System.EventHandler(this.emoticonPanelButton_Click);
             // 
             // chatTextBox
             // 
@@ -200,6 +231,16 @@
             this.myInfoPanel.Size = new System.Drawing.Size(250, 122);
             this.myInfoPanel.TabIndex = 4;
             // 
+            // availableIDpictureBox
+            // 
+            this.availableIDpictureBox.BackgroundImage = global::chatRoomClient.Properties.Resources.cross;
+            this.availableIDpictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.availableIDpictureBox.Location = new System.Drawing.Point(224, 21);
+            this.availableIDpictureBox.Name = "availableIDpictureBox";
+            this.availableIDpictureBox.Size = new System.Drawing.Size(26, 26);
+            this.availableIDpictureBox.TabIndex = 2;
+            this.availableIDpictureBox.TabStop = false;
+            // 
             // myNameTextBox
             // 
             this.myNameTextBox.BackColor = System.Drawing.Color.Azure;
@@ -214,6 +255,19 @@
             this.myNameTextBox.Enter += new System.EventHandler(this.myNameTextBox_Enter);
             this.myNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myNameTextBox_KeyDown);
             this.myNameTextBox.Leave += new System.EventHandler(this.myNameTextBox_Leave);
+            // 
+            // myImageBox
+            // 
+            this.myImageBox.BackColor = System.Drawing.Color.Azure;
+            this.myImageBox.BackgroundImage = global::chatRoomClient.Properties.Resources.eraser;
+            this.myImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.myImageBox.Location = new System.Drawing.Point(21, 21);
+            this.myImageBox.Name = "myImageBox";
+            this.myImageBox.Size = new System.Drawing.Size(80, 80);
+            this.myImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.myImageBox.TabIndex = 0;
+            this.myImageBox.TabStop = false;
+            this.myImageBox.Click += new System.EventHandler(this.myImageBox_Click);
             // 
             // chatRoomPanel
             // 
@@ -317,6 +371,20 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(247, 48);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::chatRoomClient.Properties.Resources.pencil_2;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
@@ -350,7 +418,6 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(16, 16);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -360,7 +427,6 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(16, 16);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -374,73 +440,6 @@
             this.label1.Size = new System.Drawing.Size(193, 18);
             this.label1.TabIndex = 6;
             this.label1.Text = "User 1";
-            // 
-            // searchButton
-            // 
-            this.searchButton.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.searchButton.BackgroundImage = global::chatRoomClient.Properties.Resources.search;
-            this.searchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.searchButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchButton.FlatAppearance.BorderSize = 0;
-            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchButton.Location = new System.Drawing.Point(230, 4);
-            this.searchButton.Margin = new System.Windows.Forms.Padding(6, 4, 0, 2);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(20, 20);
-            this.searchButton.TabIndex = 1;
-            this.searchButton.UseVisualStyleBackColor = false;
-            // 
-            // emoticonPanelButton
-            // 
-            this.emoticonPanelButton.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.emoticonPanelButton.BackgroundImage = global::chatRoomClient.Properties.Resources.FHgF1mrAc_e;
-            this.emoticonPanelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.emoticonPanelButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoticonPanelButton.FlatAppearance.BorderSize = 0;
-            this.emoticonPanelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.emoticonPanelButton.Location = new System.Drawing.Point(447, 4);
-            this.emoticonPanelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 2);
-            this.emoticonPanelButton.Name = "emoticonPanelButton";
-            this.emoticonPanelButton.Size = new System.Drawing.Size(20, 20);
-            this.emoticonPanelButton.TabIndex = 2;
-            this.emoticonPanelButton.UseVisualStyleBackColor = false;
-            this.emoticonPanelButton.Click += new System.EventHandler(this.emoticonPanelButton_Click);
-            // 
-            // availableIDpictureBox
-            // 
-            this.availableIDpictureBox.BackgroundImage = global::chatRoomClient.Properties.Resources.cross;
-            this.availableIDpictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.availableIDpictureBox.Location = new System.Drawing.Point(224, 21);
-            this.availableIDpictureBox.Name = "availableIDpictureBox";
-            this.availableIDpictureBox.Size = new System.Drawing.Size(26, 26);
-            this.availableIDpictureBox.TabIndex = 2;
-            this.availableIDpictureBox.TabStop = false;
-            // 
-            // myImageBox
-            // 
-            this.myImageBox.BackColor = System.Drawing.Color.Azure;
-            this.myImageBox.BackgroundImage = global::chatRoomClient.Properties.Resources.eraser;
-            this.myImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.myImageBox.Location = new System.Drawing.Point(21, 21);
-            this.myImageBox.Name = "myImageBox";
-            this.myImageBox.Size = new System.Drawing.Size(80, 80);
-            this.myImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.myImageBox.TabIndex = 0;
-            this.myImageBox.TabStop = false;
-            this.myImageBox.Click += new System.EventHandler(this.myImageBox_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::chatRoomClient.Properties.Resources.pencil_2;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(48, 48);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -471,17 +470,17 @@
             this.tableLayoutPanel3.PerformLayout();
             this.myInfoPanel.ResumeLayout(false);
             this.myInfoPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableIDpictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).EndInit();
             this.chatRoomPanel.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.userListPanel.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.availableIDpictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

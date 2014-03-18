@@ -10,7 +10,7 @@ namespace chatRoomClient
 {
     public class setting
     {
-        public static String serverIP = "140.112.18.216";
+        public static String serverIP = "140.112.18.217";
         public static int port = 11000;
     }
 
@@ -49,7 +49,7 @@ namespace chatRoomClient
             writer.Flush();
             return this;
         }
-
+        
         public String receiveMessage()
         {
             return reader.ReadLine();
