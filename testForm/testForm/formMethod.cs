@@ -144,7 +144,7 @@ namespace chatRoomClient
                 sent += client.socket.Send(buffer, sent, buffer.Length - sent, System.Net.Sockets.SocketFlags.None);
         }
 
-        private void changeTheme()
+        private void loadTheme()
         {
             //this.BackColor = System.Drawing.SystemColors.Control;
 
@@ -152,8 +152,12 @@ namespace chatRoomClient
 
             this.myNameTextBox.BackColor = lightColor;
             this.myImageBox.BackColor = lightColor;
+            this.searchTextBox.BackColor = lightColor;
+            this.chatTextBox.BackColor = lightColor;
+            this.userListPanel.BackColor = lightColor;
 
-            this.searchTextBox.ForeColor = darkColor;
+            this.searchButton.BackColor = darkColor;
+            this.emoticonPanelButton.BackColor = darkColor;
         }
 
         private void genEmoticonButtons()

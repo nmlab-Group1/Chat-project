@@ -40,6 +40,7 @@ namespace chatRoomClient
             backgroundColor = System.Drawing.Color.PaleTurquoise;
             lightColor = System.Drawing.Color.Azure;
             darkColor = System.Drawing.Color.LightSeaGreen;
+            //loadTheme();
 
             buttonNum = 32;
             emoticonImages = new System.Drawing.Image[buttonNum];
@@ -92,7 +93,10 @@ namespace chatRoomClient
                 }
                 else
                 {
-                    MessageBox.Show("\"" + myNameTextBox.Text + "\" 有人用過了");
+                    if (myNameTextBox.Text.Trim().Length == 0)
+                        MessageBox.Show("請輸入暱稱");
+                    else
+                        MessageBox.Show("\"" + myNameTextBox.Text + "\" 有人用過了");
                 }
             }
         }
@@ -251,6 +255,14 @@ namespace chatRoomClient
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            backgroundColor = Color.LightGray;
+            lightColor = Color.White;
+            darkColor = Color.Gray;
+            loadTheme();
         }
     }
 }
