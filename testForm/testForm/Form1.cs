@@ -256,13 +256,5 @@ namespace chatRoomClient
         {
 
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            backgroundColor = Color.LightGray;
-            lightColor = Color.White;
-            darkColor = Color.Gray;
-            loadTheme();
-        }
     }
 }
