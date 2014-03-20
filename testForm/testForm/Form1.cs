@@ -56,6 +56,7 @@ namespace chatRoomClient
             client.newListener(parseReceiveMessage);
 
             this.ActiveControl = myNameTextBox;     //focus on myName
+            userListPanel.Visible = false;
         }
         //
         // myNameTextBox

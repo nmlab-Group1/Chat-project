@@ -101,11 +101,72 @@ namespace chatRoomClient
             }
 
             else if (words[0].Equals("WELCOME"))
-            {// WELCOME:sID
+            {// WELCOME:ID:sID:count:ID:sID:...
                 Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
-                Action textAction = () => richTextBox1.AppendText(words[1] + " joined in\n");
+                Action textAction = () => richTextBox1.AppendText(words[2] + " joined in\n");
                 richTextBox1.Invoke(colorAction);
                 richTextBox1.Invoke(textAction);
+
+                if (words[2].Equals(myNameTextBox.Text))
+                {
+                    client.sID = words[2];
+
+                    for (int col = 0; col < this.userListPanel.ColumnCount; ++col)
+                    {
+                        Control ctrl = this.userListPanel.GetControlFromPosition(col, 0);
+                        Action remove = () => this.userListPanel.Controls.Remove(ctrl);
+                        this.userListPanel.Invoke(remove);
+                    }
+                    Action removeAt = () => this.userListPanel.RowStyles.RemoveAt(0);
+                    Action subRowCount = () => this.userListPanel.RowCount--;
+                    Action resize = () => this.userListPanel.Size = new Size(247, this.userListPanel.RowCount * 48);
+                    this.userListPanel.Invoke(removeAt);
+                    this.userListPanel.Invoke(subRowCount);
+                    this.userListPanel.Invoke(resize);
+                }
+
+                else
+                {
+                    Action visibleAction = () => this.userListPanel.Visible = true;
+                    this.userListPanel.Invoke(visibleAction);
+
+                    userGUI newUser = new userGUI(Convert.ToInt32(words[1]), words[2]);
+                    client.userList.Add(newUser);
+
+                    Action addRowCount = () => this.userListPanel.RowCount++;
+                    Action addPic = () => this.userListPanel.Controls.Add(newUser.userPic, 0, this.userListPanel.RowCount - 1);
+                    Action addPanel = () => this.userListPanel.Controls.Add(newUser.infoPanel, 1, this.userListPanel.RowCount - 1);
+                    Action addRow = () => this.userListPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+                    Action resize = () => this.userListPanel.Size = new Size(247, this.userListPanel.RowCount * 48);
+                    this.userListPanel.Invoke(addRowCount);
+                    this.userListPanel.Invoke(addPic);
+                    this.userListPanel.Invoke(addPanel);
+                    this.userListPanel.Invoke(addRow);
+                    this.userListPanel.Invoke(resize);
+                }
+            }
+
+            else if (words[0].Equals("IDListUpdate"))
+            {
+                int count = Convert.ToInt32(words[1]);
+                for (int i = 0; i < count; ++i)
+                {
+                    int ID = Convert.ToInt32(words[i * 2 + 2]);
+
+                    userGUI newUser = new userGUI(ID, words[i * 2 + 3]);
+                    client.userList.Add(newUser);
+
+                    Action addRowCount = () => this.userListPanel.RowCount++;
+                    Action addPic = () => this.userListPanel.Controls.Add(newUser.userPic, 0, this.userListPanel.RowCount - 1);
+                    Action addPanel = () => this.userListPanel.Controls.Add(newUser.infoPanel, 1, this.userListPanel.RowCount - 1);
+                    Action addRow = () => this.userListPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+                    Action resize = () => this.userListPanel.Size = new Size(247, this.userListPanel.RowCount * 48);
+                    this.userListPanel.Invoke(addRowCount);
+                    this.userListPanel.Invoke(addPic);
+                    this.userListPanel.Invoke(addPanel);
+                    this.userListPanel.Invoke(addRow);
+                    this.userListPanel.Invoke(resize);
+                }
             }
 
             else if (words[0].Equals("NEWROOM"))
@@ -154,7 +215,7 @@ namespace chatRoomClient
             this.myImageBox.BackColor = lightColor;
             this.searchTextBox.BackColor = lightColor;
             this.chatTextBox.BackColor = lightColor;
-            this.userListPanel.BackColor = lightColor;
+            this.outUserListPanel.BackColor = lightColor;
 
             this.searchButton.BackColor = darkColor;
             this.emoticonPanelButton.BackColor = darkColor;

@@ -169,9 +169,16 @@ namespace chatServer
 
             else if (words[0].Equals("WELCOME"))
             {// WELCOME:senderID:sID
-                chatSocket client = clientNo(Convert.ToInt32(words[1]));
+                int thisID = Convert.ToInt32(words[1]);
+                chatSocket client = clientNo(thisID);
                 client.sID = words[2];
-                messageToRoom(lobby.ID, words[0] + ':' + words[2]);
+
+                msg += ':' + Convert.ToInt32(clientList.Count);
+                foreach (chatSocket person in clientList)
+                {
+                    msg += ':' + Convert.ToInt32(person.ID) + ':' + person.sID;
+                }
+                messageToRoom(lobby.ID, msg);
             }
 
             else if (words[0].Equals("NEWROOM"))

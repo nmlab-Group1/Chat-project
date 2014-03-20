@@ -47,14 +47,14 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.userListPanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.outUserListPanel = new System.Windows.Forms.Panel();
+            this.userListPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.userPic = new System.Windows.Forms.PictureBox();
+            this.infoPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonHandle = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.sIDLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.formTable.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -65,11 +65,11 @@
             this.chatRoomPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.outUserListPanel.SuspendLayout();
             this.userListPanel.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userPic)).BeginInit();
+            this.infoPanel.SuspendLayout();
+            this.buttonHandle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,7 +82,7 @@
             this.formTable.Controls.Add(this.tableLayoutPanel3, 1, 2);
             this.formTable.Controls.Add(this.myInfoPanel, 0, 0);
             this.formTable.Controls.Add(this.chatRoomPanel, 1, 0);
-            this.formTable.Controls.Add(this.userListPanel, 0, 1);
+            this.formTable.Controls.Add(this.outUserListPanel, 0, 1);
             this.formTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.formTable.Location = new System.Drawing.Point(0, 0);
             this.formTable.Name = "formTable";
@@ -114,7 +114,7 @@
             this.searchTextBox.BackColor = System.Drawing.Color.Azure;
             this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.searchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchTextBox.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.searchTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.searchTextBox.ForeColor = System.Drawing.Color.Gray;
             this.searchTextBox.Location = new System.Drawing.Point(3, 2);
             this.searchTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 0, 3);
@@ -196,7 +196,7 @@
             this.chatTextBox.BackColor = System.Drawing.Color.Azure;
             this.chatTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatTextBox.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.chatTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.chatTextBox.ForeColor = System.Drawing.Color.Gray;
             this.chatTextBox.Location = new System.Drawing.Point(3, 3);
             this.chatTextBox.Name = "chatTextBox";
@@ -245,7 +245,7 @@
             // 
             this.myNameTextBox.BackColor = System.Drawing.Color.Azure;
             this.myNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.myNameTextBox.Font = new System.Drawing.Font("Microsoft JhengHei", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.myNameTextBox.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.myNameTextBox.Location = new System.Drawing.Point(107, 21);
             this.myNameTextBox.Name = "myNameTextBox";
             this.myNameTextBox.Size = new System.Drawing.Size(111, 26);
@@ -297,7 +297,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tabControl1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabControl1.HotTrack = true;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Multiline = true;
@@ -343,74 +343,73 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "New Room";
             // 
+            // outUserListPanel
+            // 
+            this.outUserListPanel.AutoScroll = true;
+            this.outUserListPanel.BackColor = System.Drawing.Color.Azure;
+            this.outUserListPanel.Controls.Add(this.userListPanel);
+            this.outUserListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outUserListPanel.Location = new System.Drawing.Point(6, 131);
+            this.outUserListPanel.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
+            this.outUserListPanel.Name = "outUserListPanel";
+            this.outUserListPanel.Size = new System.Drawing.Size(247, 396);
+            this.outUserListPanel.TabIndex = 2;
+            // 
             // userListPanel
             // 
-            this.userListPanel.AutoScroll = true;
-            this.userListPanel.BackColor = System.Drawing.Color.Azure;
-            this.userListPanel.Controls.Add(this.tableLayoutPanel4);
-            this.userListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userListPanel.Location = new System.Drawing.Point(6, 131);
-            this.userListPanel.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
+            this.userListPanel.ColumnCount = 2;
+            this.userListPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.userListPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.userListPanel.Controls.Add(this.userPic, 0, 0);
+            this.userListPanel.Controls.Add(this.infoPanel, 1, 0);
+            this.userListPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.userListPanel.Location = new System.Drawing.Point(0, 0);
             this.userListPanel.Name = "userListPanel";
-            this.userListPanel.Size = new System.Drawing.Size(247, 396);
-            this.userListPanel.TabIndex = 2;
+            this.userListPanel.RowCount = 1;
+            this.userListPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.userListPanel.Size = new System.Drawing.Size(247, 48);
+            this.userListPanel.TabIndex = 0;
             // 
-            // tableLayoutPanel4
+            // userPic
             // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.pictureBox2, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 1, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(247, 48);
-            this.tableLayoutPanel4.TabIndex = 0;
+            this.userPic.BackColor = System.Drawing.Color.White;
+            this.userPic.BackgroundImage = global::chatRoomClient.Properties.Resources.pencil_2;
+            this.userPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.userPic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userPic.Location = new System.Drawing.Point(0, 0);
+            this.userPic.Margin = new System.Windows.Forms.Padding(0);
+            this.userPic.Name = "userPic";
+            this.userPic.Size = new System.Drawing.Size(48, 48);
+            this.userPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userPic.TabIndex = 2;
+            this.userPic.TabStop = false;
+            this.userPic.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // pictureBox2
+            // infoPanel
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.BackgroundImage = global::chatRoomClient.Properties.Resources.pencil_2;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(48, 48);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.infoPanel.ColumnCount = 1;
+            this.infoPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.infoPanel.Controls.Add(this.buttonHandle, 0, 1);
+            this.infoPanel.Controls.Add(this.sIDLabel, 0, 0);
+            this.infoPanel.Location = new System.Drawing.Point(48, 0);
+            this.infoPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.infoPanel.Name = "infoPanel";
+            this.infoPanel.RowCount = 2;
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.infoPanel.Size = new System.Drawing.Size(199, 48);
+            this.infoPanel.TabIndex = 3;
             // 
-            // tableLayoutPanel5
+            // buttonHandle
             // 
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel1, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(48, 0);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(199, 48);
-            this.tableLayoutPanel5.TabIndex = 3;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(199, 24);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.buttonHandle.Controls.Add(this.button1);
+            this.buttonHandle.Controls.Add(this.button2);
+            this.buttonHandle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonHandle.Location = new System.Drawing.Point(0, 24);
+            this.buttonHandle.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonHandle.Name = "buttonHandle";
+            this.buttonHandle.Size = new System.Drawing.Size(199, 24);
+            this.buttonHandle.TabIndex = 2;
             // 
             // button1
             // 
@@ -430,17 +429,17 @@
             this.button2.TabIndex = 1;
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // sIDLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(3, 3);
-            this.label1.Margin = new System.Windows.Forms.Padding(3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 18);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "User 1";
+            this.sIDLabel.AutoSize = true;
+            this.sIDLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sIDLabel.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sIDLabel.Location = new System.Drawing.Point(3, 3);
+            this.sIDLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.sIDLabel.Name = "sIDLabel";
+            this.sIDLabel.Size = new System.Drawing.Size(193, 18);
+            this.sIDLabel.TabIndex = 6;
+            this.sIDLabel.Text = "User 1";
             // 
             // pictureBox1
             // 
@@ -476,12 +475,12 @@
             this.chatRoomPanel.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.outUserListPanel.ResumeLayout(false);
             this.userListPanel.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userPic)).EndInit();
+            this.infoPanel.ResumeLayout(false);
+            this.infoPanel.PerformLayout();
+            this.buttonHandle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -493,13 +492,13 @@
         private System.Windows.Forms.TableLayoutPanel formTable;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Panel userListPanel;
+        private System.Windows.Forms.Panel outUserListPanel;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel myInfoPanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TableLayoutPanel userListPanel;
+        private System.Windows.Forms.PictureBox userPic;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.TextBox chatTextBox;
@@ -508,11 +507,11 @@
         private System.Windows.Forms.Button chatButton3;
         private System.Windows.Forms.PictureBox myImageBox;
         private System.Windows.Forms.TextBox myNameTextBox;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TableLayoutPanel infoPanel;
+        private System.Windows.Forms.Label sIDLabel;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.PictureBox availableIDpictureBox;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel buttonHandle;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel chatRoomPanel;

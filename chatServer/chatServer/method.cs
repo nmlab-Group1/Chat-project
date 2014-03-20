@@ -10,7 +10,7 @@ namespace chatServer
 {
     public class setting
     {
-        public static String serverIP = "140.112.18.217";
+        public static String serverIP = "140.112.249.97";
         public static int port = 11000;
     }
 
@@ -30,6 +30,7 @@ namespace chatServer
         public int ID;
         public String sID;
         public List<int> roomIDList = new List<int>();
+        // System.Drawing.Color color
 
         // constructor
         public chatSocket(Socket s)

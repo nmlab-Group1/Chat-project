@@ -5,12 +5,14 @@ using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace chatRoomClient
 {
     public class setting
     {
-        public static String serverIP = "140.112.18.217";
+        public static String serverIP = "140.112.249.97";
         public static int port = 11000;
     }
 
@@ -30,7 +32,8 @@ namespace chatRoomClient
         public int ID;
         public String sID;
         public List<int> roomIDList = new List<int>();
-        public System.Drawing.Color color = new System.Drawing.Color();
+        public List<userGUI> userList = new List<userGUI>();
+        public Color color = new Color();
 
         // constructor
         public chatSocket(Socket s)
@@ -40,6 +43,8 @@ namespace chatRoomClient
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream);
             remoteEndPoint = socket.RemoteEndPoint;
+
+            color = Color.Black;
         }
 
         // send receive ~50
@@ -102,6 +107,77 @@ namespace chatRoomClient
             ID = roomID;
             sID = roomsID;
             clientList = new List<chatSocket>();
+        }
+    }
+
+    public class userGUI
+    {
+        public PictureBox userPic;
+        public TableLayoutPanel infoPanel;
+        public Label sIDLabel;
+        public FlowLayoutPanel buttonHandle;
+        public Button button1;
+        public Button button2;
+
+        public int ID;
+        public String sID;
+
+        public userGUI(int id, String sid)
+        {
+            ID = id;
+            sID = sid;
+
+            userPic = new PictureBox();
+            infoPanel = new TableLayoutPanel();
+            sIDLabel = new Label();
+            buttonHandle = new FlowLayoutPanel();
+            button1 = new Button();
+            button2 = new Button();
+
+            userPic.BackColor = Color.White;
+            userPic.BackgroundImage = global::chatRoomClient.Properties.Resources.pencil_2;
+            userPic.BackgroundImageLayout = ImageLayout.Stretch;
+            userPic.Dock = DockStyle.Fill;
+            userPic.Location = new Point(0, 0);
+            userPic.Margin = new Padding(0);
+            userPic.Size = new Size(48, 48);
+            userPic.SizeMode = PictureBoxSizeMode.Zoom;
+
+            infoPanel.ColumnCount = 1;
+            infoPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            infoPanel.Controls.Add(this.buttonHandle, 0, 1);
+            infoPanel.Controls.Add(this.sIDLabel, 0, 0);
+            infoPanel.Location = new Point(48, 0);
+            infoPanel.Margin = new Padding(0);
+            infoPanel.RowCount = 2;
+            infoPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            infoPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            infoPanel.Size = new Size(199, 48);
+
+            sIDLabel.AutoSize = true;
+            sIDLabel.Dock = DockStyle.Top;
+            sIDLabel.Font = new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(136)));
+            sIDLabel.Location = new Point(3, 3);
+            sIDLabel.Margin = new Padding(3);
+            sIDLabel.Size = new Size(193, 18);
+            this.sIDLabel.Text = sID;
+
+            buttonHandle.Controls.Add(this.button1);
+            buttonHandle.Controls.Add(this.button2);
+            buttonHandle.Dock = DockStyle.Fill;
+            buttonHandle.Location = new Point(0, 24);
+            buttonHandle.Margin = new Padding(0);
+            buttonHandle.Size = new Size(199, 24);
+
+            button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button1.Location = new System.Drawing.Point(3, 3);
+            button1.Size = new System.Drawing.Size(16, 16);
+            button1.UseVisualStyleBackColor = true;
+
+            button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button2.Location = new System.Drawing.Point(25, 3);
+            button2.Size = new System.Drawing.Size(16, 16);
+            button2.UseVisualStyleBackColor = true;
         }
     }
 }
