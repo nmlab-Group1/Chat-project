@@ -179,7 +179,7 @@ namespace chatRoomClient
 
             if (e.KeyCode == Keys.Enter)
             {
-                String msg = "MESSAGE:" + '0' + ':' + client.ID + ':' + client.color.ToArgb() + ':' + chatTextBox.Text;
+                String msg = "MESSAGE:" + client.activeRoom + ":" + client.ID + ":" + client.color.ToArgb() + ":" + chatTextBox.Text;
                 // room?
                 client.sendMessage(msg);
                 chatTextBox.Clear();
@@ -256,6 +256,14 @@ namespace chatRoomClient
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.tabControl1.SelectedTab == newRoomTab)
+            {
+                client.sendMessage("NEWROOM:" + client.ID);
+            }
         }
     }
 }

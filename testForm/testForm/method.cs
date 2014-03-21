@@ -31,6 +31,7 @@ namespace chatRoomClient
 
         public int ID;
         public String sID;
+        public int activeRoom = 0;
         public List<int> roomIDList = new List<int>();
         public List<userGUI> userList = new List<userGUI>();
         public Color color = new Color();
@@ -102,11 +103,29 @@ namespace chatRoomClient
         public String sID;
         public List<chatSocket> clientList;
 
+        public TabPage newRoom = new TabPage();
+        public RichTextBox text = new RichTextBox();
+
         public chatRoom(int roomID, String roomsID)
         {
             ID = roomID;
             sID = roomsID;
             clientList = new List<chatSocket>();
+
+            text.BackColor = System.Drawing.Color.Azure;
+            text.Dock = System.Windows.Forms.DockStyle.Fill;
+            text.Location = new System.Drawing.Point(3, 3);
+            text.Size = new System.Drawing.Size(508, 485);
+            text.TabIndex = 0;
+            text.Text = "";
+
+            newRoom.AllowDrop = true;
+            newRoom.BackColor = System.Drawing.Color.Azure;
+            newRoom.Controls.Add(text);
+            newRoom.Location = new System.Drawing.Point(4, 29);
+            newRoom.Padding = new System.Windows.Forms.Padding(3);
+            newRoom.Size = new System.Drawing.Size(514, 491);
+            newRoom.Text = "";
         }
     }
 

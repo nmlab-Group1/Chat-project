@@ -173,22 +173,23 @@ namespace chatServer
                 chatSocket client = clientNo(thisID);
                 client.sID = words[2];
 
-                msg += ':' + Convert.ToInt32(clientList.Count);
+                msg += ":" + Convert.ToInt32(clientList.Count);
                 foreach (chatSocket person in clientList)
                 {
-                    msg += ':' + Convert.ToInt32(person.ID) + ':' + person.sID;
+                    msg += ":" + Convert.ToInt32(person.ID) + ":" + person.sID;
                 }
                 messageToRoom(lobby.ID, msg);
             }
 
             else if (words[0].Equals("NEWROOM"))
-            {// NEWROOM:roomName:senderID
-                chatRoom newRoom = new chatRoom(roomIDcounter, words[1]);
-                int ID = Convert.ToInt32(words[2]);
+            {// NEWROOM:senderID
+                int ID = Convert.ToInt32(words[1]);
                 chatSocket client = clientNo(ID);
+                chatRoom newRoom = new chatRoom(roomIDcounter, client.sID + "的房間");
                 newRoom.clientList.Add(client);
                 client.roomIDList.Add(roomIDcounter);
-                msg = "NEWROOM:" + roomIDcounter;
+                roomList.Add(newRoom);
+                msg = "NEWROOM:" + roomIDcounter + ":" + client.sID + "的房間";
                 messageToPerson(ID, msg);
                 roomIDcounter++;
             }

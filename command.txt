@@ -38,8 +38,8 @@ client
 		server把sID記錄到client.sID
 		server傳給Lobby "WELCOME:ID:sID"
 
-	"NEWROOM:roomName:senderID" 開房間
-		server傳給sender "NEWROOM:" + roomID
+	"NEWROOM:senderID" 開房間
+		server傳給sender "NEWROOM:roomID:roomsID"
 
 misc
 	要有預設頭像

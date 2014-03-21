@@ -123,64 +123,56 @@ namespace chatRoomClient
                     this.userListPanel.Invoke(removeAt);
                     this.userListPanel.Invoke(subRowCount);
                     this.userListPanel.Invoke(resize);
-                }
 
-                else
-                {
                     Action visibleAction = () => this.userListPanel.Visible = true;
                     this.userListPanel.Invoke(visibleAction);
-
-                    userGUI newUser = new userGUI(Convert.ToInt32(words[1]), words[2]);
-                    client.userList.Add(newUser);
-
-                    Action addRowCount = () => this.userListPanel.RowCount++;
-                    Action addPic = () => this.userListPanel.Controls.Add(newUser.userPic, 0, this.userListPanel.RowCount - 1);
-                    Action addPanel = () => this.userListPanel.Controls.Add(newUser.infoPanel, 1, this.userListPanel.RowCount - 1);
-                    Action addRow = () => this.userListPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-                    Action resize = () => this.userListPanel.Size = new Size(247, this.userListPanel.RowCount * 48);
-                    this.userListPanel.Invoke(addRowCount);
-                    this.userListPanel.Invoke(addPic);
-                    this.userListPanel.Invoke(addPanel);
-                    this.userListPanel.Invoke(addRow);
-                    this.userListPanel.Invoke(resize);
                 }
-            }
 
-            else if (words[0].Equals("IDListUpdate"))
-            {
-                int count = Convert.ToInt32(words[1]);
+                int count = Convert.ToInt32(words[3]);
                 for (int i = 0; i < count; ++i)
                 {
-                    int ID = Convert.ToInt32(words[i * 2 + 2]);
+                    bool found = false;
+                    foreach (userGUI user in client.userList)
+                    {
+                        if (words[2 * i + 5].Equals(user.sID))
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        userGUI newUser = new userGUI(Convert.ToInt32(words[2 * i + 4]), words[2 * i + 5]);
+                        client.userList.Add(newUser);
 
-                    userGUI newUser = new userGUI(ID, words[i * 2 + 3]);
-                    client.userList.Add(newUser);
-
-                    Action addRowCount = () => this.userListPanel.RowCount++;
-                    Action addPic = () => this.userListPanel.Controls.Add(newUser.userPic, 0, this.userListPanel.RowCount - 1);
-                    Action addPanel = () => this.userListPanel.Controls.Add(newUser.infoPanel, 1, this.userListPanel.RowCount - 1);
-                    Action addRow = () => this.userListPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-                    Action resize = () => this.userListPanel.Size = new Size(247, this.userListPanel.RowCount * 48);
-                    this.userListPanel.Invoke(addRowCount);
-                    this.userListPanel.Invoke(addPic);
-                    this.userListPanel.Invoke(addPanel);
-                    this.userListPanel.Invoke(addRow);
-                    this.userListPanel.Invoke(resize);
+                        if (!words[2 * i + 5].Equals(myNameTextBox.Text))
+                        {
+                            Action addRowCount = () => this.userListPanel.RowCount++;
+                            Action addPic = () => this.userListPanel.Controls.Add(newUser.userPic, 0, this.userListPanel.RowCount - 1);
+                            Action addPanel = () => this.userListPanel.Controls.Add(newUser.infoPanel, 1, this.userListPanel.RowCount - 1);
+                            Action addRow = () => this.userListPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+                            Action resize = () => this.userListPanel.Size = new Size(247, this.userListPanel.RowCount * 48);
+                            this.userListPanel.Invoke(addRowCount);
+                            this.userListPanel.Invoke(addPic);
+                            this.userListPanel.Invoke(addPanel);
+                            this.userListPanel.Invoke(addRow);
+                            this.userListPanel.Invoke(resize);
+                        }
+                    }
                 }
             }
 
             else if (words[0].Equals("NEWROOM"))
-            {// NEWROOM:roomID:sID:sID:...
-                if (words.Length == 3)
-                {
-                    // goto new tab with title (client.sID + " and " + words[1])
-                }
-                else
-                {
-                    // goto new tab with title (New room)
-                }
-                client.roomIDList.Add(Convert.ToInt32(words[2]));
-                // client.activeRoom = ????;
+            {// NEWROOM:roomID:roomsID
+                chatRoom newRoom = new chatRoom(Convert.ToInt32(words[1]), words[2]);
+
+                Action insertTab = () => this.tabControl1.TabPages.Insert(tabControl1.TabPages.Count - 1, newRoom.newRoom);
+                Action selectTab = () => this.tabControl1.SelectedTab = newRoom.newRoom;
+                this.tabControl1.Invoke(insertTab);
+                this.tabControl1.Invoke(selectTab);
+
+                client.roomIDList.Add(Convert.ToInt32(words[1]));
+                client.activeRoom = Convert.ToInt32(words[1]);
             }
 
             else if (words[0].Equals("REGNEWUSER"))

@@ -46,7 +46,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.newRoomTab = new System.Windows.Forms.TabPage();
             this.outUserListPanel = new System.Windows.Forms.Panel();
             this.userListPanel = new System.Windows.Forms.TableLayoutPanel();
             this.userPic = new System.Windows.Forms.PictureBox();
@@ -295,7 +295,7 @@
             // 
             this.tabControl1.AllowDrop = true;
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.newRoomTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabControl1.HotTrack = true;
@@ -307,6 +307,7 @@
             this.tabControl1.ShowToolTips = true;
             this.tabControl1.Size = new System.Drawing.Size(522, 524);
             this.tabControl1.TabIndex = 3;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -331,17 +332,17 @@
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
-            // tabPage2
+            // newRoomTab
             // 
-            this.tabPage2.AllowDrop = true;
-            this.tabPage2.AutoScroll = true;
-            this.tabPage2.BackColor = System.Drawing.Color.Azure;
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(514, 491);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "New Room";
+            this.newRoomTab.AllowDrop = true;
+            this.newRoomTab.AutoScroll = true;
+            this.newRoomTab.BackColor = System.Drawing.Color.Azure;
+            this.newRoomTab.Location = new System.Drawing.Point(4, 29);
+            this.newRoomTab.Name = "newRoomTab";
+            this.newRoomTab.Padding = new System.Windows.Forms.Padding(3);
+            this.newRoomTab.Size = new System.Drawing.Size(514, 491);
+            this.newRoomTab.TabIndex = 1;
+            this.newRoomTab.Text = "New Room";
             // 
             // outUserListPanel
             // 
@@ -495,7 +496,7 @@
         private System.Windows.Forms.Panel outUserListPanel;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage newRoomTab;
         private System.Windows.Forms.Panel myInfoPanel;
         private System.Windows.Forms.TableLayoutPanel userListPanel;
         private System.Windows.Forms.PictureBox userPic;
