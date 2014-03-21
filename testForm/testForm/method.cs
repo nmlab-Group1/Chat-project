@@ -12,7 +12,7 @@ namespace chatRoomClient
 {
     public class setting
     {
-        public static String serverIP = "140.112.249.97";
+        public static String serverIP = "140.112.18.216";
         public static int port = 11000;
     }
 
@@ -32,7 +32,7 @@ namespace chatRoomClient
         public int ID;
         public String sID;
         public int activeRoom = 0;
-        public List<int> roomIDList = new List<int>();
+        public List<chatRoom> roomList = new List<chatRoom>();
         public List<userGUI> userList = new List<userGUI>();
         public Color color = new Color();
 
@@ -103,8 +103,8 @@ namespace chatRoomClient
         public String sID;
         public List<chatSocket> clientList;
 
-        public TabPage newRoom = new TabPage();
-        public RichTextBox text = new RichTextBox();
+        public TabPage newRoom;
+        public RichTextBox text;
 
         public chatRoom(int roomID, String roomsID)
         {
@@ -112,11 +112,13 @@ namespace chatRoomClient
             sID = roomsID;
             clientList = new List<chatSocket>();
 
+            newRoom = new TabPage();
+            text = new RichTextBox();
+
             text.BackColor = System.Drawing.Color.Azure;
             text.Dock = System.Windows.Forms.DockStyle.Fill;
             text.Location = new System.Drawing.Point(3, 3);
             text.Size = new System.Drawing.Size(508, 485);
-            text.TabIndex = 0;
             text.Text = "";
 
             newRoom.AllowDrop = true;
@@ -125,7 +127,7 @@ namespace chatRoomClient
             newRoom.Location = new System.Drawing.Point(4, 29);
             newRoom.Padding = new System.Windows.Forms.Padding(3);
             newRoom.Size = new System.Drawing.Size(514, 491);
-            newRoom.Text = "";
+            newRoom.Text = roomsID;
         }
     }
 
@@ -192,11 +194,17 @@ namespace chatRoomClient
             button1.Location = new System.Drawing.Point(3, 3);
             button1.Size = new System.Drawing.Size(16, 16);
             button1.UseVisualStyleBackColor = true;
+            button1.Click += new System.EventHandler(this.button1_Click);
 
             button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             button2.Location = new System.Drawing.Point(25, 3);
             button2.Size = new System.Drawing.Size(16, 16);
             button2.UseVisualStyleBackColor = true;
+        }
+
+        public void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ID.ToString() + "button click");
         }
     }
 }

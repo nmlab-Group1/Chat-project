@@ -31,7 +31,6 @@
             this.formTable = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.searchButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.textColorButton = new System.Windows.Forms.Button();
             this.emoticonPanelButton = new System.Windows.Forms.Button();
@@ -44,13 +43,13 @@
             this.chatRoomPanel = new System.Windows.Forms.Panel();
             this.emoticonFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lobbyTab = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.newRoomTab = new System.Windows.Forms.TabPage();
             this.outUserListPanel = new System.Windows.Forms.Panel();
-            this.userListPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.userListTable = new System.Windows.Forms.TableLayoutPanel();
             this.userPic = new System.Windows.Forms.PictureBox();
-            this.infoPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.userInfoTable = new System.Windows.Forms.TableLayoutPanel();
             this.buttonHandle = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -64,11 +63,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).BeginInit();
             this.chatRoomPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.lobbyTab.SuspendLayout();
             this.outUserListPanel.SuspendLayout();
-            this.userListPanel.SuspendLayout();
+            this.userListTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPic)).BeginInit();
-            this.infoPanel.SuspendLayout();
+            this.userInfoTable.SuspendLayout();
             this.buttonHandle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -96,11 +95,9 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel2.Controls.Add(this.searchTextBox, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.searchButton, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 533);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -114,32 +111,18 @@
             this.searchTextBox.BackColor = System.Drawing.Color.Azure;
             this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.searchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchTextBox.Enabled = false;
             this.searchTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.searchTextBox.ForeColor = System.Drawing.Color.Gray;
             this.searchTextBox.Location = new System.Drawing.Point(3, 2);
             this.searchTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 0, 3);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(221, 22);
+            this.searchTextBox.Size = new System.Drawing.Size(247, 22);
             this.searchTextBox.TabIndex = 2;
             this.searchTextBox.Text = "search user";
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             this.searchTextBox.Enter += new System.EventHandler(this.searchTextBox_Enter);
             this.searchTextBox.Leave += new System.EventHandler(this.searchTextBox_Leave);
-            // 
-            // searchButton
-            // 
-            this.searchButton.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.searchButton.BackgroundImage = global::chatRoomClient.Properties.Resources.search;
-            this.searchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.searchButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchButton.FlatAppearance.BorderSize = 0;
-            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchButton.Location = new System.Drawing.Point(230, 4);
-            this.searchButton.Margin = new System.Windows.Forms.Padding(6, 4, 0, 2);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(20, 20);
-            this.searchButton.TabIndex = 1;
-            this.searchButton.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel3
             // 
@@ -165,6 +148,7 @@
             this.textColorButton.BackColor = System.Drawing.Color.Black;
             this.textColorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.textColorButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textColorButton.Enabled = false;
             this.textColorButton.FlatAppearance.BorderSize = 0;
             this.textColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.textColorButton.Location = new System.Drawing.Point(473, 4);
@@ -173,7 +157,7 @@
             this.textColorButton.Size = new System.Drawing.Size(20, 20);
             this.textColorButton.TabIndex = 3;
             this.textColorButton.UseVisualStyleBackColor = false;
-            this.textColorButton.Click += new System.EventHandler(this.changeColor);
+            this.textColorButton.Click += new System.EventHandler(this.textColorButton_Click);
             // 
             // emoticonPanelButton
             // 
@@ -181,6 +165,7 @@
             this.emoticonPanelButton.BackgroundImage = global::chatRoomClient.Properties.Resources.FHgF1mrAc_e;
             this.emoticonPanelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.emoticonPanelButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.emoticonPanelButton.Enabled = false;
             this.emoticonPanelButton.FlatAppearance.BorderSize = 0;
             this.emoticonPanelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.emoticonPanelButton.Location = new System.Drawing.Point(447, 4);
@@ -196,6 +181,7 @@
             this.chatTextBox.BackColor = System.Drawing.Color.Azure;
             this.chatTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatTextBox.Enabled = false;
             this.chatTextBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.chatTextBox.ForeColor = System.Drawing.Color.Gray;
             this.chatTextBox.Location = new System.Drawing.Point(3, 3);
@@ -211,6 +197,7 @@
             // 
             this.chatButton3.BackColor = System.Drawing.Color.LightSeaGreen;
             this.chatButton3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatButton3.Enabled = false;
             this.chatButton3.FlatAppearance.BorderSize = 0;
             this.chatButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chatButton3.Location = new System.Drawing.Point(499, 4);
@@ -261,6 +248,7 @@
             this.myImageBox.BackColor = System.Drawing.Color.Azure;
             this.myImageBox.BackgroundImage = global::chatRoomClient.Properties.Resources.eraser;
             this.myImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.myImageBox.Enabled = false;
             this.myImageBox.Location = new System.Drawing.Point(21, 21);
             this.myImageBox.Name = "myImageBox";
             this.myImageBox.Size = new System.Drawing.Size(80, 80);
@@ -294,7 +282,7 @@
             // tabControl1
             // 
             this.tabControl1.AllowDrop = true;
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.lobbyTab);
             this.tabControl1.Controls.Add(this.newRoomTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -309,17 +297,17 @@
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // tabPage1
+            // lobbyTab
             // 
-            this.tabPage1.AllowDrop = true;
-            this.tabPage1.BackColor = System.Drawing.Color.Azure;
-            this.tabPage1.Controls.Add(this.richTextBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(514, 491);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Lobby";
+            this.lobbyTab.AllowDrop = true;
+            this.lobbyTab.BackColor = System.Drawing.Color.Azure;
+            this.lobbyTab.Controls.Add(this.richTextBox1);
+            this.lobbyTab.Location = new System.Drawing.Point(4, 29);
+            this.lobbyTab.Name = "lobbyTab";
+            this.lobbyTab.Padding = new System.Windows.Forms.Padding(3);
+            this.lobbyTab.Size = new System.Drawing.Size(514, 491);
+            this.lobbyTab.TabIndex = 0;
+            this.lobbyTab.Text = "Lobby";
             // 
             // richTextBox1
             // 
@@ -348,7 +336,7 @@
             // 
             this.outUserListPanel.AutoScroll = true;
             this.outUserListPanel.BackColor = System.Drawing.Color.Azure;
-            this.outUserListPanel.Controls.Add(this.userListPanel);
+            this.outUserListPanel.Controls.Add(this.userListTable);
             this.outUserListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outUserListPanel.Location = new System.Drawing.Point(6, 131);
             this.outUserListPanel.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
@@ -356,20 +344,20 @@
             this.outUserListPanel.Size = new System.Drawing.Size(247, 396);
             this.outUserListPanel.TabIndex = 2;
             // 
-            // userListPanel
+            // userListTable
             // 
-            this.userListPanel.ColumnCount = 2;
-            this.userListPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.userListPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.userListPanel.Controls.Add(this.userPic, 0, 0);
-            this.userListPanel.Controls.Add(this.infoPanel, 1, 0);
-            this.userListPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.userListPanel.Location = new System.Drawing.Point(0, 0);
-            this.userListPanel.Name = "userListPanel";
-            this.userListPanel.RowCount = 1;
-            this.userListPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.userListPanel.Size = new System.Drawing.Size(247, 48);
-            this.userListPanel.TabIndex = 0;
+            this.userListTable.ColumnCount = 2;
+            this.userListTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.userListTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.userListTable.Controls.Add(this.userPic, 0, 0);
+            this.userListTable.Controls.Add(this.userInfoTable, 1, 0);
+            this.userListTable.Dock = System.Windows.Forms.DockStyle.Top;
+            this.userListTable.Location = new System.Drawing.Point(0, 0);
+            this.userListTable.Name = "userListTable";
+            this.userListTable.RowCount = 1;
+            this.userListTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.userListTable.Size = new System.Drawing.Size(247, 48);
+            this.userListTable.TabIndex = 0;
             // 
             // userPic
             // 
@@ -386,20 +374,20 @@
             this.userPic.TabStop = false;
             this.userPic.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // infoPanel
+            // userInfoTable
             // 
-            this.infoPanel.ColumnCount = 1;
-            this.infoPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.infoPanel.Controls.Add(this.buttonHandle, 0, 1);
-            this.infoPanel.Controls.Add(this.sIDLabel, 0, 0);
-            this.infoPanel.Location = new System.Drawing.Point(48, 0);
-            this.infoPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.infoPanel.Name = "infoPanel";
-            this.infoPanel.RowCount = 2;
-            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.infoPanel.Size = new System.Drawing.Size(199, 48);
-            this.infoPanel.TabIndex = 3;
+            this.userInfoTable.ColumnCount = 1;
+            this.userInfoTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.userInfoTable.Controls.Add(this.buttonHandle, 0, 1);
+            this.userInfoTable.Controls.Add(this.sIDLabel, 0, 0);
+            this.userInfoTable.Location = new System.Drawing.Point(48, 0);
+            this.userInfoTable.Margin = new System.Windows.Forms.Padding(0);
+            this.userInfoTable.Name = "userInfoTable";
+            this.userInfoTable.RowCount = 2;
+            this.userInfoTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.userInfoTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.userInfoTable.Size = new System.Drawing.Size(199, 48);
+            this.userInfoTable.TabIndex = 3;
             // 
             // buttonHandle
             // 
@@ -464,6 +452,8 @@
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.formTable.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -475,12 +465,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.myImageBox)).EndInit();
             this.chatRoomPanel.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.lobbyTab.ResumeLayout(false);
             this.outUserListPanel.ResumeLayout(false);
-            this.userListPanel.ResumeLayout(false);
+            this.userListTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userPic)).EndInit();
-            this.infoPanel.ResumeLayout(false);
-            this.infoPanel.PerformLayout();
+            this.userInfoTable.ResumeLayout(false);
+            this.userInfoTable.PerformLayout();
             this.buttonHandle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -495,12 +485,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel outUserListPanel;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage lobbyTab;
         private System.Windows.Forms.TabPage newRoomTab;
         private System.Windows.Forms.Panel myInfoPanel;
-        private System.Windows.Forms.TableLayoutPanel userListPanel;
+        private System.Windows.Forms.TableLayoutPanel userListTable;
         private System.Windows.Forms.PictureBox userPic;
-        private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.TextBox chatTextBox;
         private System.Windows.Forms.Button textColorButton;
@@ -508,7 +497,7 @@
         private System.Windows.Forms.Button chatButton3;
         private System.Windows.Forms.PictureBox myImageBox;
         private System.Windows.Forms.TextBox myNameTextBox;
-        private System.Windows.Forms.TableLayoutPanel infoPanel;
+        private System.Windows.Forms.TableLayoutPanel userInfoTable;
         private System.Windows.Forms.Label sIDLabel;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.PictureBox availableIDpictureBox;

@@ -56,7 +56,7 @@ namespace chatRoomClient
             client.newListener(parseReceiveMessage);
 
             this.ActiveControl = myNameTextBox;     //focus on myName
-            userListPanel.Visible = false;
+            userListTable.Visible = false;
         }
         //
         // myNameTextBox
@@ -209,23 +209,6 @@ namespace chatRoomClient
                 fileToServer(buffer);
             }
         }
-        /*
-        private void emoticon_click(object sender, EventArgs e)
-        {
-            Image emotionImg = global::chatRoomClient.Properties.Resources._02;// Image.FromFile("D:\\roger\\nmlab\\testWindowsForm\\icon\\tuzki\\05.gif");
-            Clipboard.SetImage(emotionImg);
-            richTextBox1.Paste();
-            Clipboard.Clear();
-            //this.emoticonPanel.Visible = false;
-        }*/
-
-        private void changeColor(object sender, EventArgs e)
-        {
-            ColorDialog cd = new ColorDialog();
-            if (cd.ShowDialog() == DialogResult.OK)
-                client.color = cd.Color;
-            textColorButton.BackColor = cd.Color;
-        }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -264,6 +247,27 @@ namespace chatRoomClient
             {
                 client.sendMessage("NEWROOM:" + client.ID);
             }
+            else if (this.tabControl1.SelectedTab == lobbyTab)
+                client.activeRoom = 0;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            client.sendMessage("SHUTDOWN:" + client.sID);
+            client.socket.Close();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //client.sendMessage("SHUTDOWN:" + client.sID);
+        }
+
+        private void textColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == DialogResult.OK)
+                client.color = cd.Color;
+            textColorButton.BackColor = cd.Color;
         }
     }
 }

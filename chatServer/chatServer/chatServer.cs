@@ -41,7 +41,6 @@ namespace chatServer
             while (true)
             {
                 Socket socket = newSocket.Accept();
-                Console.WriteLine("-- WAITING FOR CONNECTIONS --\n");
                 chatSocket client = new chatSocket(socket);
 
                 try
@@ -192,6 +191,18 @@ namespace chatServer
                 msg = "NEWROOM:" + roomIDcounter + ":" + client.sID + "的房間";
                 messageToPerson(ID, msg);
                 roomIDcounter++;
+            }
+
+            else if (words[0].Equals("SHUTDOWN"))
+            {
+                foreach (chatSocket clnt in clientList)
+                {
+                    if (clnt.sID.Equals(words[1]))
+                    {
+                        clientList.Remove(clnt);
+                        break;
+                    }
+                }
             }
 
             else

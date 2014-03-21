@@ -10,7 +10,7 @@ namespace chatServer
 {
     public class setting
     {
-        public static String serverIP = "140.112.249.97";
+        public static String serverIP = "140.112.18.216";
         public static int port = 11000;
     }
 
@@ -86,7 +86,8 @@ namespace chatServer
             catch (Exception e)
             {
                 active = false;
-                Console.WriteLine(e.Message);
+                socket.Close();
+                // Console.WriteLine(e.Message);
             }
         }
     }

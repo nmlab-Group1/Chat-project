@@ -17,14 +17,30 @@ namespace chatRoomClient
 
             if (words[0].Equals("MESSAGE"))
             {// MESSAGE:sendersID:color:message
-                Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
-                Action textAction = () => richTextBox1.AppendText(words[1] + ": " + DateTime.Now.ToLocalTime() + '\n');
-                richTextBox1.Invoke(colorAction);
-                richTextBox1.Invoke(textAction);
-                Action colorAction2 = () => richTextBox1.SelectionColor = Color.FromArgb(Convert.ToInt32(words[2]));
-                Action textAction2 = () => richTextBox1.AppendText("    " + words[3] + '\n');
-                richTextBox1.Invoke(colorAction2);
-                richTextBox1.Invoke(textAction2);
+                if (client.activeRoom == 0)
+                {
+                    Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
+                    Action textAction = () => richTextBox1.AppendText(words[1] + ": " + DateTime.Now.ToLocalTime() + '\n');
+                    richTextBox1.Invoke(colorAction);
+                    richTextBox1.Invoke(textAction);
+                    Action colorAction2 = () => richTextBox1.SelectionColor = Color.FromArgb(Convert.ToInt32(words[2]));
+                    Action textAction2 = () => richTextBox1.AppendText("    " + words[3] + '\n');
+                    richTextBox1.Invoke(colorAction2);
+                    richTextBox1.Invoke(textAction2);
+                }
+                else
+                {
+                    foreach (chatRoom room in client.roomList)
+                    {
+                        if (room.ID == client.activeRoom)
+                        {
+                            room.text.SelectionColor = Color.Black;
+                            room.text.AppendText(words[1] + ": " + DateTime.Now.ToLocalTime() + '\n');
+                            room.text.SelectionColor = Color.FromArgb(Convert.ToInt32(words[2]));
+                            room.text.AppendText("    " + words[3] + '\n');
+                        }
+                    }
+                }
             }
 
             else if (words[0].Equals("AVAILABLEID"))
@@ -78,26 +94,9 @@ namespace chatRoomClient
 
             else if (words[0].Equals("PIC"))
             {// PIC:sendersID:index
-                
-                Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
-                Action textAction = () => richTextBox1.AppendText(words[1] + ": " + DateTime.Now.ToLocalTime() + '\n');
-                richTextBox1.Invoke(colorAction);
-                richTextBox1.Invoke(textAction);
-                Action textAction1 = () => richTextBox1.AppendText("    ");
-                richTextBox1.Invoke(textAction1);
-                //printEmoticon(Convert.ToInt32(words[2]));
-
-                picThread = new Thread(new ThreadStart(copy));
+                picThread = new Thread( () => printEmotion(words[1], Convert.ToInt32(words[2])) );
                 picThread.SetApartmentState(ApartmentState.STA);
                 picThread.Start();
-                
-                //richTextBox1.ReadOnly = false;
-                Action paste = () => richTextBox1.Paste();
-                richTextBox1.Invoke(paste);
-                //richTextBox1.ReadOnly = true;
-
-                Action textAction2 = () => richTextBox1.AppendText("\n");
-                richTextBox1.Invoke(textAction2);
             }
 
             else if (words[0].Equals("WELCOME"))
@@ -111,21 +110,21 @@ namespace chatRoomClient
                 {
                     client.sID = words[2];
 
-                    for (int col = 0; col < this.userListPanel.ColumnCount; ++col)
+                    for (int col = 0; col < this.userListTable.ColumnCount; ++col)
                     {
-                        Control ctrl = this.userListPanel.GetControlFromPosition(col, 0);
-                        Action remove = () => this.userListPanel.Controls.Remove(ctrl);
-                        this.userListPanel.Invoke(remove);
+                        Control ctrl = this.userListTable.GetControlFromPosition(col, 0);
+                        Action remove = () => this.userListTable.Controls.Remove(ctrl);
+                        this.userListTable.Invoke(remove);
                     }
-                    Action removeAt = () => this.userListPanel.RowStyles.RemoveAt(0);
-                    Action subRowCount = () => this.userListPanel.RowCount--;
-                    Action resize = () => this.userListPanel.Size = new Size(247, this.userListPanel.RowCount * 48);
-                    this.userListPanel.Invoke(removeAt);
-                    this.userListPanel.Invoke(subRowCount);
-                    this.userListPanel.Invoke(resize);
+                    Action removeAt = () => this.userListTable.RowStyles.RemoveAt(0);
+                    Action subRowCount = () => this.userListTable.RowCount--;
+                    Action resize = () => this.userListTable.Size = new Size(247, this.userListTable.RowCount * 48);
+                    this.userListTable.Invoke(removeAt);
+                    this.userListTable.Invoke(subRowCount);
+                    this.userListTable.Invoke(resize);
 
-                    Action visibleAction = () => this.userListPanel.Visible = true;
-                    this.userListPanel.Invoke(visibleAction);
+                    Action visibleAction = () => this.userListTable.Visible = true;
+                    this.userListTable.Invoke(visibleAction);
                 }
 
                 int count = Convert.ToInt32(words[3]);
@@ -147,16 +146,16 @@ namespace chatRoomClient
 
                         if (!words[2 * i + 5].Equals(myNameTextBox.Text))
                         {
-                            Action addRowCount = () => this.userListPanel.RowCount++;
-                            Action addPic = () => this.userListPanel.Controls.Add(newUser.userPic, 0, this.userListPanel.RowCount - 1);
-                            Action addPanel = () => this.userListPanel.Controls.Add(newUser.infoPanel, 1, this.userListPanel.RowCount - 1);
-                            Action addRow = () => this.userListPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-                            Action resize = () => this.userListPanel.Size = new Size(247, this.userListPanel.RowCount * 48);
-                            this.userListPanel.Invoke(addRowCount);
-                            this.userListPanel.Invoke(addPic);
-                            this.userListPanel.Invoke(addPanel);
-                            this.userListPanel.Invoke(addRow);
-                            this.userListPanel.Invoke(resize);
+                            Action addRowCount = () => this.userListTable.RowCount++;
+                            Action addPic = () => this.userListTable.Controls.Add(newUser.userPic, 0, this.userListTable.RowCount - 1);
+                            Action addPanel = () => this.userListTable.Controls.Add(newUser.infoPanel, 1, this.userListTable.RowCount - 1);
+                            Action addRow = () => this.userListTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+                            Action resize = () => this.userListTable.Size = new Size(247, this.userListTable.RowCount * 48);
+                            this.userListTable.Invoke(addRowCount);
+                            this.userListTable.Invoke(addPic);
+                            this.userListTable.Invoke(addPanel);
+                            this.userListTable.Invoke(addRow);
+                            this.userListTable.Invoke(resize);
                         }
                     }
                 }
@@ -171,13 +170,19 @@ namespace chatRoomClient
                 this.tabControl1.Invoke(insertTab);
                 this.tabControl1.Invoke(selectTab);
 
-                client.roomIDList.Add(Convert.ToInt32(words[1]));
+                client.roomList.Add(new chatRoom(Convert.ToInt32(words[1]), words[2]));
                 client.activeRoom = Convert.ToInt32(words[1]);
             }
 
             else if (words[0].Equals("REGNEWUSER"))
             {// REGNEWUSER:ID
                 client.ID = Convert.ToInt32(words[1]);
+                chatTextBox.Enabled = true;
+                searchTextBox.Enabled = true;
+                myImageBox.Enabled = true;
+                emoticonPanelButton.Enabled = true;
+                textColorButton.Enabled = true;
+                chatButton3.Enabled = true;
             }
 
             return "";
@@ -209,7 +214,6 @@ namespace chatRoomClient
             this.chatTextBox.BackColor = lightColor;
             this.outUserListPanel.BackColor = lightColor;
 
-            this.searchButton.BackColor = darkColor;
             this.emoticonPanelButton.BackColor = darkColor;
         }
 
@@ -232,7 +236,6 @@ namespace chatRoomClient
                 emoticonButtons[i].FlatAppearance.BorderSize = 0;
                 emoticonButtons[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 emoticonButtons[i].Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-                //emoticonImages[i] = Image.FromFile("D:\\roger\\nmlab\\GitHub_Roger\\Chat-project\\testForm\\icon\\meep\\" + (i+1).ToString() + ".png");
                 emoticonButtons[i].BackgroundImage = emoticonImages[i];
                 emoticonButtons[i].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
                 emoticonButtons[i].Tag = i;
@@ -240,32 +243,19 @@ namespace chatRoomClient
             }
         }
 
-        private void printEmoticon(int emoticonIndex)   //index from 0
-        {
-            // Action textAction2 = () => richTextBox1.AppendText("    " + words[3] + '\n');
-            Clipboard.SetImage(emoticonImages[emoticonIndex]);
-            //richTextBox1.ReadOnly = false;
-            //Action paste = () => richTextBox1.Paste();
-            //richTextBox1.Invoke(paste);
-            //richTextBox1.ReadOnly = true;
-            Clipboard.Clear();
-            Action textAction = () => richTextBox1.AppendText("4352345\n");
-            richTextBox1.Invoke(textAction);
-
-            /*
-            Clipboard.SetImage(emoticonImages[emoticonIndex]);
-            richTextBox1.ReadOnly = false;
-            richTextBox1.Paste();
-            richTextBox1.ReadOnly = true;
-            Clipboard.Clear();*/
-        }
-
         Thread picThread;
 
-        private void copy()
+        private void printEmotion(String sID, int index)
         {
-            //Clipboard.Clear();
-            Clipboard.SetImage(emoticonImages[3]);
+            Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
+            Action textAction = () => richTextBox1.AppendText(sID + ": " + DateTime.Now.ToLocalTime() + "\n    ");
+            Clipboard.SetImage(emoticonImages[index]);
+            Action paste = () => richTextBox1.Paste();
+            Action textAction2 = () => richTextBox1.AppendText("\n");
+            richTextBox1.Invoke(colorAction);
+            richTextBox1.Invoke(textAction);
+            richTextBox1.Invoke(paste);
+            richTextBox1.Invoke(textAction2);
             picThread.Abort();
         }
     }
