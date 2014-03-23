@@ -160,7 +160,7 @@ namespace chatServer
             else if (words[0].Equals("PIC"))
             {// PIC:roomID:senderID:index
                 chatSocket client = clientNo(Convert.ToInt32(words[2]));
-                msg = words[0] + ':' + client.sID + ':' + words[3];
+                msg = words[0] + ":" + words[1] + ":" + client.sID + ":" + words[3];
                 messageToRoom(Convert.ToInt32(words[1]), msg);
             }
 
@@ -180,16 +180,6 @@ namespace chatServer
 
             else if (words[0].Equals("NEWROOM"))
             {// NEWROOM:senderID:invitedID
-                /*int ID = Convert.ToInt32(words[1]);
-                chatSocket client = clientNo(ID);
-                chatRoom newRoom = new chatRoom(roomIDcounter, client.sID + "的房間");
-                newRoom.clientList.Add(client);
-                client.roomIDList.Add(roomIDcounter); ????
-                roomList.Add(newRoom);
-                msg = "NEWROOM:" + roomIDcounter + ":" + client.sID + "的房間";
-                messageToPerson(ID, msg);
-                roomIDcounter++;*/
-
                 chatRoom newRoom = new chatRoom(roomIDcounter, "");
                 chatSocket sendClient = clientNo(Convert.ToInt32(words[1]));
                 chatSocket invitedClient = clientNo(Convert.ToInt32(words[2]));
@@ -201,13 +191,20 @@ namespace chatServer
                 messageToPerson(sendClient.ID, msg + invitedClient.sID);
                 messageToPerson(invitedClient.ID, msg + sendClient.sID);
                 roomIDcounter++;
+            }
 
-
-
-                int invitedID = Convert.ToInt32(words[2]);
-
-
-                msg = "NEWROOM:";
+            else if (words[0].Equals("INVITE"))
+            {// INVITE:senderID:invitedID:roomID
+                foreach (chatRoom room in roomList)
+                {
+                    if (room.ID == Convert.ToInt32(words[3]))
+                    {
+                        room.clientList.Add(clientNo(Convert.ToInt32(words[2])));
+                        msg = "INVITE:" + clientNo(Convert.ToInt32(words[1])).sID + ":" + words[3];
+                        messageToPerson(Convert.ToInt32(words[2]), msg);
+                        break;
+                    }
+                }
             }
 
             else if (words[0].Equals("SHUTDOWN"))

@@ -103,8 +103,8 @@ namespace chatRoomClient
             }
 
             else if (words[0].Equals("PIC"))
-            {// PIC:sendersID:index
-                picThread = new Thread( () => printEmotion(words[1], Convert.ToInt32(words[2])) );
+            {// PIC:roomID:senderID:index
+                picThread = new Thread( () => printEmotion(Convert.ToInt32(words[1]), words[2], Convert.ToInt32(words[3])) );
                 picThread.SetApartmentState(ApartmentState.STA);
                 picThread.Start();
             }
@@ -198,6 +198,21 @@ namespace chatRoomClient
                 client.activeRoom = Convert.ToInt32(words[1]);
             }
 
+            else if (words[0].Equals("INVITE"))
+            {// INVITE:sendersID:roomID
+                chatRoom newRoom = new chatRoom(Convert.ToInt32(words[2]), "Someone's room");
+
+                Action insertTab = () => this.tabControl1.TabPages.Insert(tabControl1.TabPages.Count - 1, newRoom.newRoom);
+                Action selectTab = () => this.tabControl1.SelectedTab = newRoom.newRoom;
+                this.tabControl1.Invoke(insertTab);
+                this.tabControl1.Invoke(selectTab);
+
+                newRoom.text.AppendText(words[1] + " invited you to their room\n");
+
+                client.roomList.Add(newRoom);
+                client.activeRoom = Convert.ToInt32(words[2]);
+            }
+
             else if (words[0].Equals("REGNEWUSER"))
             {// REGNEWUSER:ID
                 client.ID = Convert.ToInt32(words[1]);
@@ -263,17 +278,34 @@ namespace chatRoomClient
 
         Thread picThread;
 
-        private void printEmotion(String sID, int index)
+        private void printEmotion(int roomID, String sID, int index)
         {
-            Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
-            Action textAction = () => richTextBox1.AppendText(sID + ": " + DateTime.Now.ToLocalTime() + "\n    ");
-            Clipboard.SetImage(emoticonImages[index]);
-            Action paste = () => richTextBox1.Paste();
-            Action textAction2 = () => richTextBox1.AppendText("\n");
-            richTextBox1.Invoke(colorAction);
-            richTextBox1.Invoke(textAction);
-            richTextBox1.Invoke(paste);
-            richTextBox1.Invoke(textAction2);
+            if (roomID == 0)
+            {
+                Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
+                Action textAction = () => richTextBox1.AppendText(sID + ": " + DateTime.Now.ToLocalTime() + "\n    ");
+                Clipboard.SetImage(emoticonImages[index]);
+                Action paste = () => richTextBox1.Paste();
+                Action textAction2 = () => richTextBox1.AppendText("\n");
+                richTextBox1.Invoke(colorAction);
+                richTextBox1.Invoke(textAction);
+                richTextBox1.Invoke(paste);
+                richTextBox1.Invoke(textAction2);
+            }
+            else
+            {
+                foreach (chatRoom room in client.roomList)
+                {
+                    if (roomID == room.ID)
+                    {
+                        room.text.SelectionColor = Color.Black;
+                        room.text.AppendText(sID + ": " + DateTime.Now.ToLocalTime() + "\n    ");
+                        Clipboard.SetImage(emoticonImages[index]);
+                        room.text.Paste();
+                        room.text.AppendText("\n");
+                    }
+                }
+            }
             picThread.Abort();
         }
     }

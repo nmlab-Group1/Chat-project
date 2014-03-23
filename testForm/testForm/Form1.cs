@@ -242,7 +242,7 @@ namespace chatRoomClient
             //global::chatRoomClient.Properties.Resources._02;// Image.FromFile("D:\\roger\\nmlab\\testWindowsForm\\icon\\tuzki\\05.gif");
             //Image emotionImg = this.ActiveControl.BackgroundImage;
             //printEmoticon((int)this.ActiveControl.Tag);
-            client.sendMessage("PIC:" + '0' + ':' + client.ID + ':' + ActiveControl.Tag.ToString());
+            client.sendMessage("PIC:" + client.activeRoom + ":" + client.ID + ":" + ActiveControl.Tag.ToString());
             emoticonFlowPanel.Visible = false;
         }
 

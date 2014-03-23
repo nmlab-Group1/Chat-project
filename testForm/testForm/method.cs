@@ -141,6 +141,7 @@ namespace chatRoomClient
         public Button chatButton;
         public Button fileButton;
         public Button micButton;
+        public Button addButton;
 
         public int ID;
         public String sID;
@@ -159,6 +160,7 @@ namespace chatRoomClient
             chatButton = new Button();
             fileButton = new Button();
             micButton = new Button();
+            addButton = new Button();
 
             userPic.BackColor = Color.White;
             userPic.BackgroundImage = global::chatRoomClient.Properties.Resources.defaultImage;
@@ -197,12 +199,15 @@ namespace chatRoomClient
             initializeButton(chatButton, global::chatRoomClient.Properties.Resources.chatBlack);
             initializeButton(fileButton, global::chatRoomClient.Properties.Resources.folder);
             initializeButton(micButton, global::chatRoomClient.Properties.Resources.mic);
+            initializeButton(addButton, global::chatRoomClient.Properties.Resources.plus);
             buttonHandle.Controls.Add(chatButton);
             buttonHandle.Controls.Add(fileButton);
             buttonHandle.Controls.Add(micButton);
+            buttonHandle.Controls.Add(addButton);
 
             chatButton.Click += new EventHandler(this.chatButton_Click);
             fileButton.Click += new EventHandler(this.fileButton_Click);
+            addButton.Click += new EventHandler(this.addButton_Click);
             /*
             chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             chatButton.Location = new System.Drawing.Point(3, 3);
@@ -252,6 +257,11 @@ namespace chatRoomClient
                 while (sent < buffer.Length)
                     sent += client.socket.Send(buffer, sent, buffer.Length - sent, System.Net.Sockets.SocketFlags.None);
             }
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            client.sendMessage("INVITE:" + client.ID + ":" + ID + ":" + client.activeRoom);
         }
     }
 }
