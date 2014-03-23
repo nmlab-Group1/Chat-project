@@ -3,7 +3,8 @@ using System;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
-
+using System.Net.Sockets;
+using System.Net;
 
 namespace chatRoomClient
 {
@@ -65,8 +66,8 @@ namespace chatRoomClient
             client = chatSocket.connect();
             client.newListener(parseReceiveMessage);
 
-            this.ActiveControl = myNameTextBox;     //focus on myName
             userListTable.Visible = false;
+            this.ActiveControl = myNameTextBox;     //focus on myName
         }
         //
         // myNameTextBox

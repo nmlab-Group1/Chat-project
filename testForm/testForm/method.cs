@@ -12,7 +12,7 @@ namespace chatRoomClient
 {
     public class setting
     {
-        public static String serverIP = "140.112.18.216";
+        public static String serverIP = "140.112.18.217";
         public static int port = 11000;
     }
 
@@ -207,7 +207,9 @@ namespace chatRoomClient
 
             chatButton.Click += new EventHandler(this.chatButton_Click);
             fileButton.Click += new EventHandler(this.fileButton_Click);
+            micButton.Click += new EventHandler(this.micButton_Click);
             addButton.Click += new EventHandler(this.addButton_Click);
+
             /*
             chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             chatButton.Location = new System.Drawing.Point(3, 3);
@@ -259,9 +261,30 @@ namespace chatRoomClient
             }
         }
 
+        private void micButton_Click(object sender, EventArgs e)
+        {
+            client.sendMessage("CALL:" + client.ID + ":" + ID);
+            VoiceForm callingForm = new VoiceForm(getMyIP(), client.sID);
+            callingForm.ShowDialog();
+        }
+
         private void addButton_Click(object sender, EventArgs e)
         {
             client.sendMessage("INVITE:" + client.ID + ":" + ID + ":" + client.activeRoom);
+        }
+
+        private string getMyIP()
+        {
+            string hn = Dns.GetHostName();
+            IPAddress[] ip = Dns.GetHostEntry(hn).AddressList;
+            foreach (IPAddress it in ip)
+            {
+                if (it.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return it.ToString();
+                }
+            }
+            return "";
         }
     }
 }

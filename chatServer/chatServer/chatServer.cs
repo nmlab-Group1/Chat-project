@@ -219,6 +219,18 @@ namespace chatServer
                 }
             }
 
+            else if (words[0].Equals("CALL"))
+            {// CHAT:ID1:ID2:sID1
+                chatSocket client1 = clientNo(Convert.ToInt32(words[1]));
+                chatSocket client2 = clientNo(Convert.ToInt32(words[2]));
+                String IP1 = client1.socket.RemoteEndPoint.ToString();
+                String IP2 = client2.socket.RemoteEndPoint.ToString();
+                IP1 = IP1.Substring(0, IP1.IndexOf(':'));
+                IP2 = IP2.Substring(0, IP2.IndexOf(':'));
+                //messageToPerson(client1.ID, "CALL:" + IP1 + ":" + IP2);
+                messageToPerson(client2.ID, "CALL:" + IP2 + ":" + IP1 + ":" +client1.sID);
+            }
+
             else
             {
                 Console.WriteLine("ERROR OCCCURRED");

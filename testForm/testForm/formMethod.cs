@@ -3,6 +3,8 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
+using System.Net;
+using System.Net.Sockets;
 
 namespace chatRoomClient
 {
@@ -213,6 +215,12 @@ namespace chatRoomClient
                 client.activeRoom = Convert.ToInt32(words[2]);
             }
 
+            else if (words[0].Equals("CALL"))
+            {// CALL:IP1:IP2:sID1
+                VoiceForm calledForm = new VoiceForm(words[1], words[2], words[3]);
+                calledForm.ShowDialog();
+            }
+
             else if (words[0].Equals("REGNEWUSER"))
             {// REGNEWUSER:ID
                 client.ID = Convert.ToInt32(words[1]);
@@ -307,6 +315,19 @@ namespace chatRoomClient
                 }
             }
             picThread.Abort();
+        }
+        private string getMyIP()
+        {
+            string hn = Dns.GetHostName();
+            IPAddress[] ip = Dns.GetHostEntry(hn).AddressList;
+            foreach (IPAddress it in ip)
+            {
+                if (it.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return it.ToString();
+                }
+            }
+            return "";
         }
     }
 }
