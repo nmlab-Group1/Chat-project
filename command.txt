@@ -13,7 +13,7 @@ client
 		server傳給sender "AVAILABLEID:USED"或"AVAILABLEID:USABLE"
 
 	"MESSAGE:roomID:senderID:color:message" 一般的文字訊息
-		server傳給room "MESSAGE:senderID:color:message"
+		server傳給room "MESSAGE:roomID:sendersID:color:message"
 
 	"IDPHOTO:senderID:fileLength" 有人換頭像的時候傳的訊息
 		server接收檔案
@@ -38,8 +38,8 @@ client
 		server把sID記錄到client.sID
 		server傳給Lobby "WELCOME:ID:sID"
 
-	"NEWROOM:senderID" 開房間
-		server傳給sender "NEWROOM:roomID:roomsID"
+	"NEWROOM:senderID:invitedID" 開房間
+		server傳給兩個人 "NEWROOM:roomID:roomsID"
 
 misc
 	要有預設頭像

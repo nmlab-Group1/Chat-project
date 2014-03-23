@@ -98,10 +98,8 @@ namespace chatServer
             else if (words[0].Equals("MESSAGE"))
             {// MESSAGE:roomID:senderID:color:message
                 chatSocket client = clientNo(Convert.ToInt32(words[2]));
-                msg = words[0] + ':' + client.sID + ':' + words[3] + ':' + words[4];
+                msg = "MESSAGE:" + words[1] + ":" + client.sID + ":" + words[3] + ":" + words[4];
                 messageToRoom(Convert.ToInt32(words[1]), msg);
-                // leave the time issue to client side
-                // and client does not need to know the roomID
             }
 
             else if (words[0].Equals("IDPHOTO"))
@@ -117,7 +115,7 @@ namespace chatServer
             }
 
             else if (words[0].Equals("FILE"))
-            {// FILE:senderID:receiverID:fileLength
+            {// FILE:senderID:receiverID:fileLength:fileName
                 int fileLength = Convert.ToInt32(words[3]);
                 Byte[] buffer = new Byte[fileLength];
 
@@ -125,7 +123,7 @@ namespace chatServer
                 fileFromPerson(clientNo(senderID), buffer);
 
                 int receiverID = Convert.ToInt32(words[2]);
-                msg = words[0] + ':' + words[1] + ':' + words[3];
+                msg = words[0] + ':' + words[1] + ':' + words[3] + ':' + words[4];
                 messageToPerson(receiverID, msg);
                 fileToPerson(clientNo(receiverID), buffer);
             }
@@ -181,16 +179,35 @@ namespace chatServer
             }
 
             else if (words[0].Equals("NEWROOM"))
-            {// NEWROOM:senderID
-                int ID = Convert.ToInt32(words[1]);
+            {// NEWROOM:senderID:invitedID
+                /*int ID = Convert.ToInt32(words[1]);
                 chatSocket client = clientNo(ID);
                 chatRoom newRoom = new chatRoom(roomIDcounter, client.sID + "的房間");
                 newRoom.clientList.Add(client);
-                client.roomIDList.Add(roomIDcounter);
+                client.roomIDList.Add(roomIDcounter); ????
                 roomList.Add(newRoom);
                 msg = "NEWROOM:" + roomIDcounter + ":" + client.sID + "的房間";
                 messageToPerson(ID, msg);
+                roomIDcounter++;*/
+
+                chatRoom newRoom = new chatRoom(roomIDcounter, "");
+                chatSocket sendClient = clientNo(Convert.ToInt32(words[1]));
+                chatSocket invitedClient = clientNo(Convert.ToInt32(words[2]));
+                newRoom.clientList.Add(sendClient);
+                newRoom.clientList.Add(invitedClient);
+                roomList.Add(newRoom);
+
+                msg = "NEWROOM:" + roomIDcounter.ToString() + ":";
+                messageToPerson(sendClient.ID, msg + invitedClient.sID);
+                messageToPerson(invitedClient.ID, msg + sendClient.sID);
                 roomIDcounter++;
+
+
+
+                int invitedID = Convert.ToInt32(words[2]);
+
+
+                msg = "NEWROOM:";
             }
 
             else if (words[0].Equals("SHUTDOWN"))

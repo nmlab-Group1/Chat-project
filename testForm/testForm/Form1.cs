@@ -253,12 +253,13 @@ namespace chatRoomClient
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.tabControl1.SelectedTab == newRoomTab)
+            /*if (this.tabControl1.SelectedTab == newRoomTab)
             {
                 client.sendMessage("NEWROOM:" + client.ID);
             }
             else if (this.tabControl1.SelectedTab == lobbyTab)
-                client.activeRoom = 0;
+                client.activeRoom = 0;*/
+            client.activeRoom = (int)this.tabControl1.SelectedTab.Tag;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

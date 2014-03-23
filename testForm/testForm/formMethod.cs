@@ -16,15 +16,17 @@ namespace chatRoomClient
             // richTextBox1.Text = msg;
 
             if (words[0].Equals("MESSAGE"))
-            {// MESSAGE:sendersID:color:message
-                if (client.activeRoom == 0)
+            {// MESSAGE:roomID:sendersID:color:message
+                int roomID = Convert.ToInt32(words[1]);
+
+                if (roomID == 0)
                 {
                     Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
-                    Action textAction = () => richTextBox1.AppendText(words[1] + ": " + DateTime.Now.ToLocalTime() + '\n');
+                    Action textAction = () => richTextBox1.AppendText(words[2] + ": " + DateTime.Now.ToLocalTime() + '\n');
                     richTextBox1.Invoke(colorAction);
                     richTextBox1.Invoke(textAction);
-                    Action colorAction2 = () => richTextBox1.SelectionColor = Color.FromArgb(Convert.ToInt32(words[2]));
-                    Action textAction2 = () => richTextBox1.AppendText("    " + words[3] + '\n');
+                    Action colorAction2 = () => richTextBox1.SelectionColor = Color.FromArgb(Convert.ToInt32(words[3]));
+                    Action textAction2 = () => richTextBox1.AppendText("    " + words[4] + '\n');
                     richTextBox1.Invoke(colorAction2);
                     richTextBox1.Invoke(textAction2);
                 }
@@ -32,12 +34,12 @@ namespace chatRoomClient
                 {
                     foreach (chatRoom room in client.roomList)
                     {
-                        if (room.ID == client.activeRoom)
+                        if (roomID == room.ID)
                         {
                             room.text.SelectionColor = Color.Black;
-                            room.text.AppendText(words[1] + ": " + DateTime.Now.ToLocalTime() + '\n');
-                            room.text.SelectionColor = Color.FromArgb(Convert.ToInt32(words[2]));
-                            room.text.AppendText("    " + words[3] + '\n');
+                            room.text.AppendText(words[2] + ": " + DateTime.Now.ToLocalTime() + '\n');
+                            room.text.SelectionColor = Color.FromArgb(Convert.ToInt32(words[3]));
+                            room.text.AppendText("    " + words[4] + '\n');
                         }
                     }
                 }
@@ -65,20 +67,28 @@ namespace chatRoomClient
                 String fileName = "tempFile" + client.GetHashCode();
                 File.WriteAllBytes(fileName, buffer);
                 FileStream fs = File.OpenRead(fileName);
-                myImageBox.Image = Image.FromStream(fs);
+
+                foreach (userGUI user in client.userList)
+                {
+                    if (user.ID == Convert.ToInt32(words[1]))
+                    {
+                        user.userPic.BackgroundImage = Image.FromStream(fs);
+                    }
+                }
+
+                if (Convert.ToInt32(words[1]) == client.ID)
+                    myImageBox.BackgroundImage = Image.FromStream(fs);
                 fs.Close();
             }
 
             else if (words[0].Equals("FILE"))
-            {// FILE:senderID:fileLength
+            {// FILE:senderID:fileLength:fileName
+                MessageBox.Show("Someone sent you a file: " + words[3]);
+
                 Byte[] buffer = new Byte[Convert.ToInt32(words[2])];
                 fileFromServer(buffer);
 
-                SaveFileDialog sd = new SaveFileDialog();
-                if (sd.ShowDialog() == DialogResult.OK)
-                {
-                    File.WriteAllBytes(sd.FileName, buffer);
-                }
+                File.WriteAllBytes(words[3], buffer);
             }
 
             else if (words[0].Equals("SEARCHLISTUPDATE"))
@@ -141,7 +151,7 @@ namespace chatRoomClient
                     }
                     if (!found)
                     {
-                        userGUI newUser = new userGUI(Convert.ToInt32(words[2 * i + 4]), words[2 * i + 5]);
+                        userGUI newUser = new userGUI(Convert.ToInt32(words[2 * i + 4]), words[2 * i + 5], client);
                         client.userList.Add(newUser);
 
                         if (!words[2 * i + 5].Equals(myNameTextBox.Text))
@@ -159,12 +169,18 @@ namespace chatRoomClient
                         }
                     }
                 }
-                chatTextBox.Enabled = true;
-                searchTextBox.Enabled = true;
-                myImageBox.Enabled = true;
-                emoticonPanelButton.Enabled = true;
-                textColorButton.Enabled = true;
-                chatButton3.Enabled = true;
+                Action en1 = () => chatTextBox.Enabled = true;
+                Action en2 = () => searchTextBox.Enabled = true;
+                Action en3 = () => myImageBox.Enabled = true;
+                Action en4 = () => emoticonPanelButton.Enabled = true;
+                Action en5 = () => textColorButton.Enabled = true;
+                Action en6 = () => chatButton3.Enabled = true;
+                this.chatTextBox.Invoke(en1);
+                this.searchTextBox.Invoke(en2);
+                this.myImageBox.Invoke(en3);
+                this.emoticonPanelButton.Invoke(en4);
+                this.textColorButton.Invoke(en5);
+                this.chatButton3.Invoke(en6);
             }
 
             else if (words[0].Equals("NEWROOM"))
@@ -176,7 +192,9 @@ namespace chatRoomClient
                 this.tabControl1.Invoke(insertTab);
                 this.tabControl1.Invoke(selectTab);
 
-                client.roomList.Add(new chatRoom(Convert.ToInt32(words[1]), words[2]));
+                newRoom.text.AppendText("Chat with " + newRoom.sID + "\n");
+
+                client.roomList.Add(newRoom);
                 client.activeRoom = Convert.ToInt32(words[1]);
             }
 

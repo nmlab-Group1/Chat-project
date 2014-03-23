@@ -54,12 +54,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="method.cs" />
-    <Compile Include="NewRoomForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewRoomForm.Designer.cs">
-      <DependentUpon>NewRoomForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

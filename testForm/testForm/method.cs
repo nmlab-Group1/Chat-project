@@ -12,7 +12,7 @@ namespace chatRoomClient
 {
     public class setting
     {
-        public static String serverIP = "140.112.18.217";
+        public static String serverIP = "140.112.18.216";
         public static int port = 11000;
     }
 
@@ -101,7 +101,6 @@ namespace chatRoomClient
     {
         public int ID;
         public String sID;
-        public List<chatSocket> clientList;
 
         public TabPage newRoom;
         public RichTextBox text;
@@ -110,7 +109,6 @@ namespace chatRoomClient
         {
             ID = roomID;
             sID = roomsID;
-            clientList = new List<chatSocket>();
 
             newRoom = new TabPage();
             text = new RichTextBox();
@@ -128,11 +126,14 @@ namespace chatRoomClient
             newRoom.Padding = new System.Windows.Forms.Padding(3);
             newRoom.Size = new System.Drawing.Size(514, 491);
             newRoom.Text = roomsID;
+            newRoom.Tag = roomID;
         }
     }
 
     public class userGUI
     {
+        public chatSocket client;
+
         public PictureBox userPic;
         public TableLayoutPanel infoPanel;
         public Label sIDLabel;
@@ -144,8 +145,10 @@ namespace chatRoomClient
         public int ID;
         public String sID;
 
-        public userGUI(int id, String sid)
+        public userGUI(int id, String sid, chatSocket clnt)
         {
+            client = clnt;
+
             ID = id;
             sID = sid;
 
@@ -159,7 +162,8 @@ namespace chatRoomClient
 
             userPic.BackColor = Color.White;
             userPic.BackgroundImage = global::chatRoomClient.Properties.Resources.defaultImage;
-            userPic.BackgroundImageLayout = ImageLayout.Stretch;
+            userPic.BackgroundImageLayout = ImageLayout.Zoom;
+            userPic.BackColor = Color.Transparent;
             userPic.Dock = DockStyle.Fill;
             userPic.Location = new Point(0, 0);
             userPic.Margin = new Padding(0);
@@ -197,6 +201,8 @@ namespace chatRoomClient
             buttonHandle.Controls.Add(fileButton);
             buttonHandle.Controls.Add(micButton);
 
+            chatButton.Click += new EventHandler(this.chatButton_Click);
+            fileButton.Click += new EventHandler(this.fileButton_Click);
             /*
             chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             chatButton.Location = new System.Drawing.Point(3, 3);
@@ -224,9 +230,28 @@ namespace chatRoomClient
             button.UseVisualStyleBackColor = true;
         }
 
-        public void chatButton_Click(object sender, EventArgs e)
+        private void chatButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(ID.ToString() + "button click");
+            client.sendMessage("NEWROOM:" + client.ID + ":" + ID);
+        }
+
+        private void fileButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fs = File.OpenRead(fd.FileName);
+                int fileLength = (int)fs.Length;
+                Byte[] buffer = new Byte[fileLength];
+                fs.Read(buffer, 0, fileLength);
+                fs.Close();
+
+                String fileName = fd.FileName.Substring(fd.FileName.LastIndexOf('\\') + 1);
+                client.sendMessage("FILE:" + client.ID + ":" + ID + ":" + fileLength + ":" + fileName);
+                int sent = 0;
+                while (sent < buffer.Length)
+                    sent += client.socket.Send(buffer, sent, buffer.Length - sent, System.Net.Sockets.SocketFlags.None);
+            }
         }
     }
 }
