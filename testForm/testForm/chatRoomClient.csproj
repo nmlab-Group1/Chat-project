@@ -107,9 +107,6 @@
     <None Include="Resources\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\open-folder-icon_cr.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\01.png" />
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +222,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\defaultUserImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chatBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chatWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\defaultImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open-folder-icon_cr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

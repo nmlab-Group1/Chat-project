@@ -159,6 +159,12 @@ namespace chatRoomClient
                         }
                     }
                 }
+                chatTextBox.Enabled = true;
+                searchTextBox.Enabled = true;
+                myImageBox.Enabled = true;
+                emoticonPanelButton.Enabled = true;
+                textColorButton.Enabled = true;
+                chatButton3.Enabled = true;
             }
 
             else if (words[0].Equals("NEWROOM"))
@@ -177,12 +183,6 @@ namespace chatRoomClient
             else if (words[0].Equals("REGNEWUSER"))
             {// REGNEWUSER:ID
                 client.ID = Convert.ToInt32(words[1]);
-                chatTextBox.Enabled = true;
-                searchTextBox.Enabled = true;
-                myImageBox.Enabled = true;
-                emoticonPanelButton.Enabled = true;
-                textColorButton.Enabled = true;
-                chatButton3.Enabled = true;
             }
 
             return "";
@@ -223,9 +223,9 @@ namespace chatRoomClient
             int buttonLength = 48;
             int i = 0;
 
-            System.Windows.Forms.Button[] emoticonButtons = new System.Windows.Forms.Button[buttonNum];
+            System.Windows.Forms.Button[] emoticonButtons = new System.Windows.Forms.Button[emoticonButtonNum];
             //System.Drawing.Image[] emoticonImages = new System.Drawing.Image[buttonNum];
-            for (i = 0; i < buttonNum; ++i)
+            for (i = 0; i < emoticonButtonNum; ++i)
             {
                 emoticonButtons[i] = new System.Windows.Forms.Button();
                 emoticonFlowPanel.Controls.Add(emoticonButtons[i]);

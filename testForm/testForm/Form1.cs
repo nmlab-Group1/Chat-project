@@ -20,8 +20,13 @@ namespace chatRoomClient
         Color lightColor;
         Color darkColor;
 
-        int buttonNum;
+        int emoticonButtonNum;
         Image[] emoticonImages;
+
+        Image defaultUserImage;
+        Image chatImage;
+        Image folderImage;
+        Image micImage;
 
         chatSocket client = null;
         StringHandler msgHandler;
@@ -42,13 +47,18 @@ namespace chatRoomClient
             darkColor = System.Drawing.Color.LightSeaGreen;
             //loadTheme();
 
-            buttonNum = 32;
-            emoticonImages = new System.Drawing.Image[buttonNum];
-            for (int i = 0; i < buttonNum; ++i)
+            emoticonButtonNum = 32;
+            emoticonImages = new System.Drawing.Image[emoticonButtonNum];
+            for (int i = 0; i < emoticonButtonNum; ++i)
             {
                 emoticonImages[i] = (Image)Properties.Resources.ResourceManager.GetObject("_" + (i+1).ToString());
             }
             genEmoticonButtons();
+
+            defaultUserImage = global::chatRoomClient.Properties.Resources.defaultImage;
+            chatImage = global::chatRoomClient.Properties.Resources.chatBlack;
+            folderImage = global::chatRoomClient.Properties.Resources.folder;
+            micImage = global::chatRoomClient.Properties.Resources.mic;
 
             msgHandler = parseReceiveMessage;
             

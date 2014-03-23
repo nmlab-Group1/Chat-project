@@ -12,7 +12,7 @@ namespace chatRoomClient
 {
     public class setting
     {
-        public static String serverIP = "140.112.18.216";
+        public static String serverIP = "140.112.18.217";
         public static int port = 11000;
     }
 
@@ -137,8 +137,9 @@ namespace chatRoomClient
         public TableLayoutPanel infoPanel;
         public Label sIDLabel;
         public FlowLayoutPanel buttonHandle;
-        public Button button1;
-        public Button button2;
+        public Button chatButton;
+        public Button fileButton;
+        public Button micButton;
 
         public int ID;
         public String sID;
@@ -152,11 +153,12 @@ namespace chatRoomClient
             infoPanel = new TableLayoutPanel();
             sIDLabel = new Label();
             buttonHandle = new FlowLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
+            chatButton = new Button();
+            fileButton = new Button();
+            micButton = new Button();
 
             userPic.BackColor = Color.White;
-            userPic.BackgroundImage = global::chatRoomClient.Properties.Resources.pencil_2;
+            userPic.BackgroundImage = global::chatRoomClient.Properties.Resources.defaultImage;
             userPic.BackgroundImageLayout = ImageLayout.Stretch;
             userPic.Dock = DockStyle.Fill;
             userPic.Location = new Point(0, 0);
@@ -176,33 +178,53 @@ namespace chatRoomClient
             infoPanel.Size = new Size(199, 48);
 
             sIDLabel.AutoSize = true;
-            sIDLabel.Dock = DockStyle.Top;
+            sIDLabel.Dock = DockStyle.Fill;
             sIDLabel.Font = new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(136)));
-            sIDLabel.Location = new Point(3, 3);
-            sIDLabel.Margin = new Padding(3);
+            //sIDLabel.Location = new Point(3, 3);
+            sIDLabel.Margin = new Padding(0);
             sIDLabel.Size = new Size(193, 18);
             this.sIDLabel.Text = sID;
 
-            buttonHandle.Controls.Add(this.button1);
-            buttonHandle.Controls.Add(this.button2);
             buttonHandle.Dock = DockStyle.Fill;
             buttonHandle.Location = new Point(0, 24);
             buttonHandle.Margin = new Padding(0);
             buttonHandle.Size = new Size(199, 24);
 
-            button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            button1.Location = new System.Drawing.Point(3, 3);
-            button1.Size = new System.Drawing.Size(16, 16);
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += new System.EventHandler(this.button1_Click);
+            initializeButton(chatButton, global::chatRoomClient.Properties.Resources.chatBlack);
+            initializeButton(fileButton, global::chatRoomClient.Properties.Resources.folder);
+            initializeButton(micButton, global::chatRoomClient.Properties.Resources.mic);
+            buttonHandle.Controls.Add(chatButton);
+            buttonHandle.Controls.Add(fileButton);
+            buttonHandle.Controls.Add(micButton);
 
-            button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            button2.Location = new System.Drawing.Point(25, 3);
-            button2.Size = new System.Drawing.Size(16, 16);
-            button2.UseVisualStyleBackColor = true;
+            /*
+            chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            chatButton.Location = new System.Drawing.Point(3, 3);
+            chatButton.Size = new System.Drawing.Size(16, 16);
+            chatButton.UseVisualStyleBackColor = true;
+            chatButton.Click += new System.EventHandler(this.chatButton_Click);
+
+            fileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            fileButton.Location = new System.Drawing.Point(25, 3);
+            fileButton.Size = new System.Drawing.Size(16, 16);
+            fileButton.UseVisualStyleBackColor = true;
+            */
         }
 
-        public void button1_Click(object sender, EventArgs e)
+        private void initializeButton(Button button, Image image)
+        {
+            button.BackColor = Color.MediumTurquoise;
+            button.BackgroundImage = image;
+            button.BackgroundImageLayout = ImageLayout.Zoom;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Margin = new Padding(4, 0, 0, 0);
+            //button.Location = new System.Drawing.Point(3, 3);
+            button.Size = new System.Drawing.Size(24, 24);
+            button.UseVisualStyleBackColor = true;
+        }
+
+        public void chatButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show(ID.ToString() + "button click");
         }
