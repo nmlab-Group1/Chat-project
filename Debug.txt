@@ -1,0 +1,7 @@
+﻿
+若H323Class無法正常運作:
+
+1. 須將openh323.ocx加入chatRoomClient的reference(solution explorer -> References)，成功加入則做第3步
+2. 若無法加入(加入時跳出error message)，則先複製openh323.ocx到 C:\Windows\System32，並用cmd輸入"regsvr32 openh323.ocx"，此時應跳出註冊成功dialog。
+3. 把References按開來，在ATLH323Lib按右鍵，Properties，"Embed Interop Type"改成False
+
