@@ -115,8 +115,9 @@ namespace chatRoomClient
 
             text.BackColor = System.Drawing.Color.Azure;
             text.Dock = System.Windows.Forms.DockStyle.Fill;
-            text.Location = new System.Drawing.Point(3, 3);
-            text.Size = new System.Drawing.Size(508, 485);
+            //text.Location = new System.Drawing.Point(3, 3);
+            text.ReadOnly = true;
+            //text.Size = new System.Drawing.Size(508, 485);
             text.Text = "";
 
             newRoom.AllowDrop = true;
@@ -127,7 +128,16 @@ namespace chatRoomClient
             newRoom.Size = new System.Drawing.Size(514, 491);
             newRoom.Text = roomsID;
             newRoom.Tag = roomID;
+            //newRoom.MouseDown += new System.Windows.Forms.MouseEventHandler(newRoom_MouseDown);
         }
+        /*
+        private void newRoom_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+            {
+                MessageBox.Show("middle");
+            }
+        }*/
     }
 
     public class userGUI
@@ -264,7 +274,7 @@ namespace chatRoomClient
         private void micButton_Click(object sender, EventArgs e)
         {
             client.sendMessage("CALL:" + client.ID + ":" + ID);
-            VoiceForm callingForm = new VoiceForm(getMyIP(), client.sID);
+            VoiceForm callingForm = new VoiceForm(getMyIP(), sID);
             callingForm.ShowDialog();
         }
 

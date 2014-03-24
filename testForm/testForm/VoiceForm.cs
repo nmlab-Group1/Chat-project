@@ -13,7 +13,7 @@ namespace chatRoomClient
         string localIP;
         string remoteIP;
         string remoteSID;
-        Image remoteImage;
+        //Image remoteImage;
 
         public VoiceForm(string _localIP, string _remoteSID)//, Image _remoteImage)  //calling
         {
@@ -22,9 +22,9 @@ namespace chatRoomClient
             localIP = _localIP;
             remoteIP = "";
             remoteSID = _remoteSID;
-            remoteImage = global::chatRoomClient.Properties.Resources.defaultImage;
+            //remoteImage = global::chatRoomClient.Properties.Resources.defaultImage;
 
-            remoteImageBox.BackgroundImage = remoteImage;
+            //remoteImageBox.BackgroundImage = remoteImage;
             label1.Text = remoteSID;
 
             h323 = new H323Class();
@@ -45,9 +45,9 @@ namespace chatRoomClient
             localIP = _localIP;
             remoteIP = _remoteIP;
             remoteSID = _remoteSID;
-            remoteImage = global::chatRoomClient.Properties.Resources.defaultImage;
+            //remoteImage = global::chatRoomClient.Properties.Resources.defaultImage;
 
-            remoteImageBox.BackgroundImage = remoteImage;
+            //remoteImageBox.BackgroundImage = remoteImage;
             label1.Text = remoteSID;
 
             h323 = new H323Class();
@@ -59,6 +59,7 @@ namespace chatRoomClient
 
             h323.RemoteHost = remoteIP;
             hangupButton.BackColor = Color.Green;
+            hangupButton.Image = global::chatRoomClient.Properties.Resources.ringingPhone36;
         }
 
         private void hangupButton_Click(object sender, EventArgs e)
@@ -67,6 +68,7 @@ namespace chatRoomClient
             {
                 h323.Connect();
                 hangupButton.BackColor = Color.Crimson;
+                hangupButton.Image = global::chatRoomClient.Properties.Resources.hangupWhite36;
             }
             else
             {

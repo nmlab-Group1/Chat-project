@@ -52,7 +52,7 @@ namespace chatRoomClient
                 if (words[1].Equals("USABLE"))
                 {
                     isIDAvailable = true;
-                    this.availableIDpictureBox.BackgroundImage = global::chatRoomClient.Properties.Resources.tick;
+                    this.availableIDpictureBox.BackgroundImage = global::chatRoomClient.Properties.Resources.tick3;
                 }
                 else if (words[1].Equals("USED"))
                 {
@@ -176,20 +176,20 @@ namespace chatRoomClient
                 Action en3 = () => myImageBox.Enabled = true;
                 Action en4 = () => emoticonPanelButton.Enabled = true;
                 Action en5 = () => textColorButton.Enabled = true;
-                Action en6 = () => chatButton3.Enabled = true;
+                //Action en6 = () => chatButton3.Enabled = true;
                 this.chatTextBox.Invoke(en1);
                 this.searchTextBox.Invoke(en2);
                 this.myImageBox.Invoke(en3);
                 this.emoticonPanelButton.Invoke(en4);
                 this.textColorButton.Invoke(en5);
-                this.chatButton3.Invoke(en6);
+                //this.chatButton3.Invoke(en6);
             }
 
             else if (words[0].Equals("NEWROOM"))
             {// NEWROOM:roomID:roomsID
                 chatRoom newRoom = new chatRoom(Convert.ToInt32(words[1]), words[2]);
 
-                Action insertTab = () => this.tabControl1.TabPages.Insert(tabControl1.TabPages.Count - 1, newRoom.newRoom);
+                Action insertTab = () => this.tabControl1.TabPages.Insert(tabControl1.TabPages.Count, newRoom.newRoom);
                 Action selectTab = () => this.tabControl1.SelectedTab = newRoom.newRoom;
                 this.tabControl1.Invoke(insertTab);
                 this.tabControl1.Invoke(selectTab);
@@ -204,7 +204,7 @@ namespace chatRoomClient
             {// INVITE:sendersID:roomID
                 chatRoom newRoom = new chatRoom(Convert.ToInt32(words[2]), "Someone's room");
 
-                Action insertTab = () => this.tabControl1.TabPages.Insert(tabControl1.TabPages.Count - 1, newRoom.newRoom);
+                Action insertTab = () => this.tabControl1.TabPages.Insert(tabControl1.TabPages.Count, newRoom.newRoom);
                 Action selectTab = () => this.tabControl1.SelectedTab = newRoom.newRoom;
                 this.tabControl1.Invoke(insertTab);
                 this.tabControl1.Invoke(selectTab);
@@ -290,15 +290,20 @@ namespace chatRoomClient
         {
             if (roomID == 0)
             {
+                Action readAction = () => richTextBox1.ReadOnly = false;
                 Action colorAction = () => richTextBox1.SelectionColor = Color.Black;
                 Action textAction = () => richTextBox1.AppendText(sID + ": " + DateTime.Now.ToLocalTime() + "\n    ");
-                Clipboard.SetImage(emoticonImages[index]);
                 Action paste = () => richTextBox1.Paste();
                 Action textAction2 = () => richTextBox1.AppendText("\n");
+                Action readonlyAction = () => richTextBox1.ReadOnly = true;
+                richTextBox1.Invoke(readAction);
                 richTextBox1.Invoke(colorAction);
                 richTextBox1.Invoke(textAction);
+                Clipboard.SetImage(emoticonImages[index]);
                 richTextBox1.Invoke(paste);
+                Clipboard.Clear();
                 richTextBox1.Invoke(textAction2);
+                richTextBox1.Invoke(readonlyAction);
             }
             else
             {
@@ -306,28 +311,19 @@ namespace chatRoomClient
                 {
                     if (roomID == room.ID)
                     {
+                        room.text.ReadOnly = false;
                         room.text.SelectionColor = Color.Black;
                         room.text.AppendText(sID + ": " + DateTime.Now.ToLocalTime() + "\n    ");
                         Clipboard.SetImage(emoticonImages[index]);
                         room.text.Paste();
+                        Clipboard.Clear();
                         room.text.AppendText("\n");
+                        room.text.ReadOnly = true;
                     }
                 }
             }
             picThread.Abort();
         }
-        private string getMyIP()
-        {
-            string hn = Dns.GetHostName();
-            IPAddress[] ip = Dns.GetHostEntry(hn).AddressList;
-            foreach (IPAddress it in ip)
-            {
-                if (it.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return it.ToString();
-                }
-            }
-            return "";
-        }
+
     }
 }
